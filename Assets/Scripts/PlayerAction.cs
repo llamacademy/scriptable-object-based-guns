@@ -6,13 +6,18 @@ public class PlayerAction : MonoBehaviour
 {
     [SerializeField]
     private PlayerGunSelector GunSelector;
+    public SpriteRenderer Sprite;
+
+    private void Start()
+    {
+        GunSelector.ActiveGun.ShootConfig.SpriteRenderer = Sprite;    
+    }
 
     private void Update()
     {
-        if (Mouse.current.leftButton.isPressed
-            && GunSelector.ActiveGun != null)
-        {
-            GunSelector.ActiveGun.Shoot();
-        }
+        GunSelector.ActiveGun.Tick(
+            Mouse.current.leftButton.isPressed
+            && GunSelector.ActiveGun != null
+        );
     }
 }

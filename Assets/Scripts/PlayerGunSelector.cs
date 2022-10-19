@@ -18,7 +18,7 @@ public class PlayerGunSelector : MonoBehaviour
     [Header("Runtime Filled")]
     public GunScriptableObject ActiveGun;
 
-    private void Start()
+    private void Awake()
     {
         GunScriptableObject gun = Guns.Find(gun => gun.Type == Gun);
 
