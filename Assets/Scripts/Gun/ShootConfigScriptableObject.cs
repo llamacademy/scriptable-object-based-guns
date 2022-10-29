@@ -14,12 +14,7 @@ public class ShootConfigScriptableObject : ScriptableObject
     [Header("Texture-Based Spread")]
     [Range(0.001f, 5f)]
     public float SpreadMultiplier = 0.1f;
-    public Texture2D AdvancedSpreadTexture;
-
-    public SpriteRenderer SpriteRenderer;
-
-    private Color[] OriginalColors = null;
-    private Texture2D RenderTexture = null;
+    public Texture2D SpreadTexture;
 
     public Vector3 GetSpread(float ShootTime = 0)
     {
@@ -39,9 +34,8 @@ public class ShootConfigScriptableObject : ScriptableObject
         }
         else if (SpreadType == BulletSpreadType.TextureBased)
         {
-            Vector3 direction = GetTextureDirection(ShootTime);
-
-            spread = direction * SpreadMultiplier;
+            spread = GetTextureDirection(ShootTime);
+            spread *= SpreadMultiplier;
         }
 
         return spread;
@@ -49,34 +43,18 @@ public class ShootConfigScriptableObject : ScriptableObject
 
     private Vector3 GetTextureDirection(float ShootTime)
     {
-        Vector2 halfSize = new Vector2(AdvancedSpreadTexture.width / 2f, AdvancedSpreadTexture.height / 2f);
+        Vector2 halfSize = new Vector2(SpreadTexture.width / 2f, SpreadTexture.height / 2f);
 
-        // how to handle shotgun where you might always want some spread?
-        int halfSquareRadius = Mathf.CeilToInt(Mathf.Lerp(1, halfSize.x, Mathf.Clamp01(ShootTime / MaxSpreadTime)));
+        int halfSquareExtents = Mathf.CeilToInt(Mathf.Lerp(0.01f, halfSize.x, Mathf.Clamp01(ShootTime / MaxSpreadTime)));
 
-        int minX = Mathf.FloorToInt(halfSize.x) - halfSquareRadius;
-        int minY = Mathf.FloorToInt(halfSize.y) - halfSquareRadius;
+        int minX = Mathf.FloorToInt(halfSize.x) - halfSquareExtents;
+        int minY = Mathf.FloorToInt(halfSize.y) - halfSquareExtents;
 
-        if (OriginalColors == null || RenderTexture == null)
-        {
-            OriginalColors = AdvancedSpreadTexture.GetPixels();
-            RenderTexture = new Texture2D(AdvancedSpreadTexture.width, AdvancedSpreadTexture.height, AdvancedSpreadTexture.format, false, true);
-            RenderTexture.SetPixels(OriginalColors);
-            RenderTexture.Apply();
-
-            Sprite sprite = Sprite.Create(
-                RenderTexture,
-                new Rect(0, 0, RenderTexture.width, RenderTexture.height),
-                Vector2.one / 2f
-            );
-            SpriteRenderer.sprite = sprite;
-        }
-
-        Color[] sampleColors = AdvancedSpreadTexture.GetPixels(
+        Color[] sampleColors = SpreadTexture.GetPixels(
             minX,
             minY,
-            halfSquareRadius * 2,
-            halfSquareRadius * 2
+            halfSquareExtents * 2,
+            halfSquareExtents * 2
         );
 
         float[] colorsAsGrey = System.Array.ConvertAll(sampleColors, (color) => color.grayscale);
@@ -93,40 +71,13 @@ public class ShootConfigScriptableObject : ScriptableObject
             }
         }
 
-        int x = minX + i % (halfSquareRadius * 2);
-        int y = minY + i / (halfSquareRadius * 2);
+        int x = minX + i % (halfSquareExtents * 2);
+        int y = minY + i / (halfSquareExtents * 2);
 
-        Vector3 targetPosition = new Vector3(x, y, 0);
+        Vector2 targetPosition = new Vector2(x, y);
 
-        Vector3 direction = (targetPosition - new Vector3(halfSize.x, halfSize.y, 0)) / halfSize.x;
-
-        RenderTexture.SetPixels(OriginalColors);
-        SetRectPixels(RenderTexture, minX, minY, halfSquareRadius * 2);
-        RenderTexture.SetPixel(x, y, Color.green);
-        RenderTexture.Apply();
+        Vector2 direction = (targetPosition - new Vector2(halfSize.x, halfSize.y)) / halfSize.x;
 
         return direction;
-    }
-
-    //For debug UI only
-    private void SetRectPixels(Texture2D RenderTexture, int MinX, int MinY, int RectSize)
-    {
-        for (int x = 0; x < RectSize; x++)
-        {
-            for (int y = 0; y < RectSize; y++)
-            {
-                if (x == 0 || x == RectSize - 1 || y == 0 || y == RectSize - 1)
-                {
-                    RenderTexture.SetPixel(MinX + x, MinY + y, Color.red);
-                }
-            }
-        }
-    }
-
-    public enum BulletSpreadType
-    {
-        None,
-        Simple,
-        TextureBased
     }
 }

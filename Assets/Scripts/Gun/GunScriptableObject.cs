@@ -49,8 +49,8 @@ public class GunScriptableObject : ScriptableObject
         if (Time.time - LastShootTime - ShootConfig.FireRate > Time.deltaTime)
         {
             float lastDuration = Mathf.Clamp(
-                (StopShootingTime - InitialClickTime), 
                 0, 
+                (StopShootingTime - InitialClickTime), 
                 ShootConfig.MaxSpreadTime
             );
             float lerpTime = (ShootConfig.RecoilRecoverySpeed - (Time.time - StopShootingTime)) 
@@ -65,7 +65,6 @@ public class GunScriptableObject : ScriptableObject
             ShootSystem.Play();
 
             Vector3 spreadAmount = ShootConfig.GetSpread(Time.time - InitialClickTime);
-
             Model.transform.forward += Model.transform.TransformDirection(spreadAmount);
             
             Vector3 shootDirection = ShootSystem.transform.forward;
