@@ -18,13 +18,22 @@ public class GunScriptableObject : ScriptableObject
     private MonoBehaviour ActiveMonoBehaviour;
     private GameObject Model;
     private float LastShootTime;
+    private float InitialClickTime;
+    private float StopShootingTime;
+
     private ParticleSystem ShootSystem;
     private ObjectPool<TrailRenderer> TrailPool;
+    private bool LastFrameWantedToShoot;
 
     public void Spawn(Transform Parent, MonoBehaviour ActiveMonoBehaviour)
     {
         this.ActiveMonoBehaviour = ActiveMonoBehaviour;
-        LastShootTime = 0; // in editor this will not be properly reset, in build it's fine
+        
+        // in editor these will not be properly reset, in build it's fine
+        LastShootTime = 0; 
+        StopShootingTime = 0;
+        InitialClickTime = 0;
+
         TrailPool = new ObjectPool<TrailRenderer>(CreateTrail);
 
         Model = Instantiate(ModelPrefab);
@@ -37,26 +46,28 @@ public class GunScriptableObject : ScriptableObject
 
     public void Shoot()
     {
+        if (Time.time - LastShootTime - ShootConfig.FireRate > Time.deltaTime)
+        {
+            float lastDuration = Mathf.Clamp(
+                0, 
+                (StopShootingTime - InitialClickTime), 
+                ShootConfig.MaxSpreadTime
+            );
+            float lerpTime = (ShootConfig.RecoilRecoverySpeed - (Time.time - StopShootingTime)) 
+                / ShootConfig.RecoilRecoverySpeed;
+
+            InitialClickTime = Time.time - Mathf.Lerp(0, lastDuration, Mathf.Clamp01(lerpTime));
+        }
+
         if (Time.time > ShootConfig.FireRate + LastShootTime)
         {
             LastShootTime = Time.time;
             ShootSystem.Play();
-            Vector3 shootDirection = ShootSystem.transform.forward
-                + new Vector3(
-                    Random.Range(
-                        -ShootConfig.Spread.x,
-                        ShootConfig.Spread.x
-                    ),
-                    Random.Range(
-                        -ShootConfig.Spread.y,
-                        ShootConfig.Spread.y
-                    ),
-                    Random.Range(
-                        -ShootConfig.Spread.z,
-                        ShootConfig.Spread.z
-                    )
-                );
-            shootDirection.Normalize();
+
+            Vector3 spreadAmount = ShootConfig.GetSpread(Time.time - InitialClickTime);
+            Model.transform.forward += Model.transform.TransformDirection(spreadAmount);
+            
+            Vector3 shootDirection = ShootSystem.transform.forward;
 
             if (Physics.Raycast(
                     ShootSystem.transform.position,
@@ -84,6 +95,27 @@ public class GunScriptableObject : ScriptableObject
                     )
                 );
             }
+        }
+    }
+
+    public void Tick(bool WantsToShoot)
+    {
+        Model.transform.localRotation = Quaternion.Lerp(
+            Model.transform.localRotation, 
+            Quaternion.Euler(SpawnRotation), 
+            Time.deltaTime * ShootConfig.RecoilRecoverySpeed
+        );
+
+        if (WantsToShoot)
+        {
+            LastFrameWantedToShoot = true;
+            Shoot();
+        }
+        
+        if (!WantsToShoot && LastFrameWantedToShoot)
+        {
+            StopShootingTime = Time.time;
+            LastFrameWantedToShoot = false;
         }
     }
 
@@ -145,5 +177,4 @@ public class GunScriptableObject : ScriptableObject
 
         return trail;
     }
-
 }

@@ -9,10 +9,9 @@ public class PlayerAction : MonoBehaviour
 
     private void Update()
     {
-        if (Mouse.current.leftButton.isPressed
-            && GunSelector.ActiveGun != null)
-        {
-            GunSelector.ActiveGun.Shoot();
-        }
+        GunSelector.ActiveGun.Tick(
+            Application.isFocused && Mouse.current.leftButton.isPressed
+            && GunSelector.ActiveGun != null
+        );
     }
 }

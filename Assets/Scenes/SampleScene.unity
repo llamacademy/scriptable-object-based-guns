@@ -3018,8 +3018,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7b6c9c6d6540a4a822821b1fc80e72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GunName: Glock
-  GunParent: {fileID: 624691198}
+  Gun: 1
+  GunParent: {fileID: 1619413602}
   Guns:
   - {fileID: 11400000, guid: c2f1d42b3210893408d68408ee3faee5, type: 2}
   - {fileID: 11400000, guid: cdf736977e88a034280829a6d0d61d7e, type: 2}
@@ -3044,6 +3044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GunSelector: {fileID: 624691197}
+  Sprite: {fileID: 0}
 --- !u!114 &624691207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3575,6 +3576,37 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!1 &1619413601
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1619413602}
+  m_Layer: 0
+  m_Name: Gun Holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1619413602
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619413601}
+  m_LocalRotation: {x: 0.98599607, y: 0, z: -0.16676876, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 624691198}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 180, y: 19.2, z: 0}
 --- !u!1 &1854106840
 GameObject:
   m_ObjectHideFlags: 0
