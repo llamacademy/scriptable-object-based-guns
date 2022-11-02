@@ -12,6 +12,7 @@ public class GunScriptableObject : ScriptableObject
     public Vector3 SpawnPoint;
     public Vector3 SpawnRotation;
 
+    public DamageConfigScriptableObject DamageConfig;
     public ShootConfigScriptableObject ShootConfig;
     public TrailConfigScriptableObject TrailConfig;
 
@@ -153,6 +154,11 @@ public class GunScriptableObject : ScriptableObject
                 ImpactType,
                 0
             );
+
+            if (Hit.collider.TryGetComponent(out IDamageable damageable))
+            {
+                damageable.TakeDamage(DamageConfig.GetDamage(distance));
+            }
         }
 
         yield return new WaitForSeconds(TrailConfig.Duration);
