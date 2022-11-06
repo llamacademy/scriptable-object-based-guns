@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
+[DisallowMultipleComponent]
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyMovement : MonoBehaviour
 {

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[DisallowMultipleComponent]
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
     [SerializeField]
@@ -19,11 +20,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     public void TakeDamage(int Damage)
     {
-        int damageTaken = Damage;
-        if (CurrentHealth < damageTaken)
-        {
-            damageTaken = CurrentHealth;
-        }
+        int damageTaken = Mathf.Clamp(Damage, 0, CurrentHealth);
 
         CurrentHealth -= damageTaken;
         

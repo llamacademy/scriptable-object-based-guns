@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[DisallowMultipleComponent]
 public class Enemy : MonoBehaviour
 {
     public EnemyHealth Health;
