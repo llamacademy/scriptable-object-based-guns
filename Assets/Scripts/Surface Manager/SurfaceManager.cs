@@ -130,37 +130,47 @@ public class SurfaceManager : MonoBehaviour
         {
             Mesh mesh = meshFilter.mesh;
 
-            if (mesh.subMeshCount > 1)
-            {
-                int[] hitTriangleIndices = new int[]
-                {
-                    mesh.triangles[TriangleIndex * 3],
-                    mesh.triangles[TriangleIndex * 3 + 1],
-                    mesh.triangles[TriangleIndex * 3 + 2]
-                };
+            return GetTextureFromMesh(mesh, TriangleIndex, Renderer.sharedMaterials);
+        }
+        else if (Renderer is SkinnedMeshRenderer)
+        {
+            SkinnedMeshRenderer smr = (SkinnedMeshRenderer)Renderer;
+            Mesh mesh = smr.sharedMesh;
 
-                for (int i = 0; i < mesh.subMeshCount; i++)
+            return GetTextureFromMesh(mesh, TriangleIndex, Renderer.sharedMaterials);
+        }
+
+        Debug.LogError($"{Renderer.name} has no MeshFilter or SkinnedMeshRenderer! Using default impact effect instead of texture-specific one because we'll be unable to find the correct texture!");
+        return null;
+    }
+
+    private Texture GetTextureFromMesh(Mesh Mesh, int TriangleIndex, Material[] Materials)
+    {
+        if (Mesh.subMeshCount > 1)
+        {
+            int[] hitTriangleIndices = new int[]
+            {
+                    Mesh.triangles[TriangleIndex * 3],
+                    Mesh.triangles[TriangleIndex * 3 + 1],
+                    Mesh.triangles[TriangleIndex * 3 + 2]
+            };
+
+            for (int i = 0; i < Mesh.subMeshCount; i++)
+            {
+                int[] submeshTriangles = Mesh.GetTriangles(i);
+                for (int j = 0; j < submeshTriangles.Length; j += 3)
                 {
-                    int[] submeshTriangles = mesh.GetTriangles(i);
-                    for (int j = 0; j < submeshTriangles.Length; j += 3)
+                    if (submeshTriangles[j] == hitTriangleIndices[0]
+                        && submeshTriangles[j + 1] == hitTriangleIndices[1]
+                        && submeshTriangles[j + 2] == hitTriangleIndices[2])
                     {
-                        if (submeshTriangles[j] == hitTriangleIndices[0]
-                            && submeshTriangles[j + 1] == hitTriangleIndices[1]
-                            && submeshTriangles[j + 2] == hitTriangleIndices[2])
-                        {
-                            return Renderer.sharedMaterials[i].mainTexture;
-                        }
+                        return Materials[i].mainTexture;
                     }
                 }
             }
-            else
-            {
-                return Renderer.sharedMaterial.mainTexture;
-            }
         }
-
-        Debug.LogError($"{Renderer.name} has no MeshFilter! Using default impact effect instead of texture-specific one because we'll be unable to find the correct texture!");
-        return null;
+        
+        return Materials[0].mainTexture;
     }
 
     private void PlayEffects(Vector3 HitPoint, Vector3 HitNormal, SurfaceEffect SurfaceEffect, float SoundOffset)

@@ -10,7 +10,7 @@ In this tutorial repository and accompanying [video series](https://www.youtube.
 * Reloading - Coming with a Future Video 
 * Attachments - Coming with a Future Video
 * Animated Models - Coming with a Future Video
-* Simple Impact Damage - Coming with a Future Video
+* Simple Impact Damage - [Implemented in Part 3](https://youtu.be/6yvUmSxlGQo) with "IDamageable" System for damaging arbitrary objects including enemies.
 * Damage Effects such as burning, freezing, explosions, etc... - Coming with a Future Video
 * And even more! - Coming with a Future Video
 
@@ -53,6 +53,7 @@ Head over to https://patreon.com/llamacademy to show your support.
 * EJ
 * Chris B.
 * Sean
+* ag10g
 * YOUR NAME HERE!
 
 ## Other Projects
@@ -70,5 +71,5 @@ Interested in other AI Topics in Unity, or other tutorials on Unity in general?
 * [Reddit](https://www.reddit.com/user/LlamAcademyOfficial)
 
 ## Requirements
-* Requires Unity 2020.3 LTS or higher.
+* Requires Unity 2021.3 LTS or higher.
 * [Unity Particle Pack](https://assetstore.unity.com/packages/essentials/tutorial-projects/unity-particle-pack-127325)
