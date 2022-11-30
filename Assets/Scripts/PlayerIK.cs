@@ -9,12 +9,10 @@ public class PlayerIK : MonoBehaviour
     public Transform LeftElbowIKTarget;
     public Transform RightElbowIKTarget;
 
-    [SerializeField]
     [Range(0, 1f)]
-    private float HandIKAmount = 1f;
-    [SerializeField]
+    public float HandIKAmount = 1f;
     [Range(0, 1f)]
-    private float ElbowIKAmount = 1f;
+    public float ElbowIKAmount = 1f;
 
     private Animator Animator;
 
