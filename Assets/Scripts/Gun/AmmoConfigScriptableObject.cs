@@ -9,14 +9,29 @@ public class AmmoConfigScriptableObject : ScriptableObject
     public int CurrentAmmo = 120;
     public int CurrentClipAmmo = 30;
 
+    /// <summary>
+    /// Reloads with the ammo conserving algorithm.
+    /// Meaning it will only subtract the delta between the ClipSize and CurrentClipAmmo from the CurrentAmmo.
+    /// </summary>
     public void Reload()
     {
         int maxReloadAmount = Mathf.Min(ClipSize, CurrentAmmo);
         int availableBulletsInCurrentClip = ClipSize - CurrentClipAmmo;
         int reloadAmount = Mathf.Min(maxReloadAmount, availableBulletsInCurrentClip);
-        CurrentClipAmmo = CurrentClipAmmo + reloadAmount;
+        CurrentClipAmmo += reloadAmount;
         CurrentAmmo -= reloadAmount;
     }
+
+    /// <summary>
+    /// Reloads not conserving ammo.
+    /// Meaning it will always subtract the ClipSize from CurrentAmmo (if available).
+    /// </summary>
+    //public void Reload()
+    //{
+    //    int reloadAmount = Mathf.Min(ClipSize, CurrentAmmo);
+    //    CurrentClipAmmo = reloadAmount;
+    //    CurrentAmmo -= reloadAmount;
+    //}
 
     public bool CanReload()
     {

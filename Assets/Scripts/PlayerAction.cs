@@ -17,7 +17,8 @@ public class PlayerAction : MonoBehaviour
     private void Update()
     {
         GunSelector.ActiveGun.Tick(
-            Application.isFocused && Mouse.current.leftButton.isPressed
+            !IsReloading 
+            && Application.isFocused && Mouse.current.leftButton.isPressed
             && GunSelector.ActiveGun != null
         );
 
@@ -45,7 +46,7 @@ public class PlayerAction : MonoBehaviour
             && GunSelector.ActiveGun.CanReload();
     }
 
-    public void EndReload()
+    private void EndReload()
     {
         GunSelector.ActiveGun.EndReload();
         InverseKinematics.HandIKAmount = 1f;

@@ -42,6 +42,8 @@ public class GunScriptableObject : ScriptableObject
         LastShootTime = 0; 
         StopShootingTime = 0;
         InitialClickTime = 0;
+        AmmoConfig.CurrentClipAmmo = AmmoConfig.ClipSize;
+        AmmoConfig.CurrentAmmo = AmmoConfig.MaxAmmo;
 
         TrailPool = new ObjectPool<TrailRenderer>(CreateTrail);
 

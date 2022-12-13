@@ -3782,7 +3782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GunSelector: {fileID: 624691197}
-  AutoReload: 0
+  AutoReload: 1
   InverseKinematics: {fileID: 624691207}
   PlayerAnimator: {fileID: 624691213}
 --- !u!114 &624691207
