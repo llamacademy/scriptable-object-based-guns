@@ -7,7 +7,7 @@ In this tutorial repository and accompanying [video series](https://www.youtube.
 * Simple Bullet Spread & Recoil - [Implemented in Part 1](https://youtu.be/E-vIMamyORg). 
 * Simple Procedural Recoil - [Implemented in Part 2](https://youtu.be/pwq7F5DeQnI)
 * Procedural Recoil based on Texture - [Implemented in Part 2](https://youtu.be/pwq7F5DeQnI)
-* Reloading - Coming with a Future Video 
+* Reloading - [Implemented in Part 4](https://youtu.be/Tn8RYWnEd94)
 * Attachments - Coming with a Future Video
 * Animated Models - Coming with a Future Video
 * Simple Impact Damage - [Implemented in Part 3](https://youtu.be/6yvUmSxlGQo) with "IDamageable" System for damaging arbitrary objects including enemies.
@@ -51,9 +51,10 @@ Head over to https://patreon.com/llamacademy to show your support.
 * Dr Bash
 * Tarik
 * EJ
-* Chris B.
 * Sean
 * ag10g
+* Vita Prochazka
+* Lurking Ninja
 * YOUR NAME HERE!
 
 ## Other Projects
