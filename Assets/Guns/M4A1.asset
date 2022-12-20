@@ -23,3 +23,4 @@ MonoBehaviour:
   ShootConfig: {fileID: 11400000, guid: 6c671f1a9963542478d1c6440cc1b847, type: 2}
   AmmoConfig: {fileID: 11400000, guid: e3b10f4eea18e2145acefd49a87e369a, type: 2}
   TrailConfig: {fileID: 11400000, guid: 79c1328b195bf3b4497caa97d3949cd7, type: 2}
+  AudioConfig: {fileID: 11400000, guid: 0ec2223a27af3f148a5b367f698cda5e, type: 2}
