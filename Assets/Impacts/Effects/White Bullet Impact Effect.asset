@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnObjectEffects:
   - {fileID: 11400000, guid: 3a17330964ff3524dbf0293d695385e4, type: 2}
-  PlayAudioEffects: []
+  PlayAudioEffects:
+  - {fileID: 11400000, guid: 773014ea7be38ba49ae270f5055f6cb0, type: 2}

@@ -16,8 +16,10 @@ public class GunScriptableObject : ScriptableObject
     public ShootConfigScriptableObject ShootConfig;
     public AmmoConfigScriptableObject AmmoConfig;
     public TrailConfigScriptableObject TrailConfig;
+    public AudioConfigScriptableObject AudioConfig;
 
     private MonoBehaviour ActiveMonoBehaviour;
+    private AudioSource ShootingAudioSource;
     private GameObject Model;
     private float LastShootTime;
     private float InitialClickTime;
@@ -37,7 +39,7 @@ public class GunScriptableObject : ScriptableObject
     public void Spawn(Transform Parent, MonoBehaviour ActiveMonoBehaviour)
     {
         this.ActiveMonoBehaviour = ActiveMonoBehaviour;
-        
+
         // in editor these will not be properly reset, in build it's fine
         LastShootTime = 0; 
         StopShootingTime = 0;
@@ -51,7 +53,8 @@ public class GunScriptableObject : ScriptableObject
         Model.transform.SetParent(Parent, false);
         Model.transform.localPosition = SpawnPoint;
         Model.transform.localRotation = Quaternion.Euler(SpawnRotation);
-
+        
+        ShootingAudioSource = Model.GetComponent<AudioSource>();
         ShootSystem = Model.GetComponentInChildren<ParticleSystem>();
     }
 
@@ -70,10 +73,7 @@ public class GunScriptableObject : ScriptableObject
         if (WantsToShoot)
         {
             LastFrameWantedToShoot = true;
-            if (AmmoConfig.CurrentClipAmmo > 0)
-            {
-                Shoot();
-            }
+            TryToShoot();
         }
 
         if (!WantsToShoot && LastFrameWantedToShoot)
@@ -81,6 +81,15 @@ public class GunScriptableObject : ScriptableObject
             StopShootingTime = Time.time;
             LastFrameWantedToShoot = false;
         }
+    }
+
+    /// <summary>
+    /// Plays the reloading audio clip if assigned.
+    /// Expected to be called on the first frame that reloading begins
+    /// </summary>
+    public void StartReloading()
+    {
+        AudioConfig.PlayReloadClip(ShootingAudioSource);
     }
 
     /// <summary>
@@ -103,9 +112,9 @@ public class GunScriptableObject : ScriptableObject
     }
 
     /// <summary>
-    /// Performs the shooting raycast if possible based on gun rate of fire. Also applies bullet spread.
+    /// Performs the shooting raycast if possible based on gun rate of fire. Also applies bullet spread and plays sound effects based on the AudioConfig.
     /// </summary>
-    private void Shoot()
+    private void TryToShoot()
     {
         if (Time.time - LastShootTime - ShootConfig.FireRate > Time.deltaTime)
         {
@@ -123,7 +132,14 @@ public class GunScriptableObject : ScriptableObject
         if (Time.time > ShootConfig.FireRate + LastShootTime)
         {
             LastShootTime = Time.time;
+            if (AmmoConfig.CurrentClipAmmo == 0)
+            {
+                AudioConfig.PlayOutOfAmmoClip(ShootingAudioSource);
+                return;
+            }
+
             ShootSystem.Play();
+            AudioConfig.PlayShootingClip(ShootingAudioSource, AmmoConfig.CurrentClipAmmo == 1);
 
             Vector3 spreadAmount = ShootConfig.GetSpread(Time.time - InitialClickTime);
             Model.transform.forward += Model.transform.TransformDirection(spreadAmount);
