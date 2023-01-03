@@ -34,6 +34,7 @@ Head over to https://patreon.com/llamacademy to show your support.
 * YOUR NAME HERE!
 
 ### Tremendous Supporter Tier
+* Bruno Bozic
 * YOUR NAME HERE!
 
 ### Awesome Supporter Tier
