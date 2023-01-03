@@ -2,15 +2,16 @@
 Learn how to create a ScriptableObject-based gun system from scratch for your game! 
 
 In this tutorial repository and accompanying [video series](https://www.youtube.com/watch?v=E-vIMamyORg&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to), you'll learn how to make a configuration-driven gun system with ScriptableObjects that will be able to have:
-* Hitscan Guns - [Implemented in Part 1](https://youtu.be/E-vIMamyORg)
+* Hitscan Guns - [Implemented in Part 1](https://www.youtube.com/watch?v=E-vIMamyORg&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=1)
 * Projectile Guns - Coming with a Future Video
-* Simple Bullet Spread & Recoil - [Implemented in Part 1](https://youtu.be/E-vIMamyORg). 
-* Simple Procedural Recoil - [Implemented in Part 2](https://youtu.be/pwq7F5DeQnI)
-* Procedural Recoil based on Texture - [Implemented in Part 2](https://youtu.be/pwq7F5DeQnI)
-* Reloading - [Implemented in Part 4](https://youtu.be/Tn8RYWnEd94)
+* Simple Bullet Spread & Recoil - [Implemented in Part 1](https://www.youtube.com/watch?v=E-vIMamyORg&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=1).
+* Simple Procedural Recoil - [Implemented in Part 2](https://www.youtube.com/watch?v=pwq7F5DeQnI&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=2)
+* Procedural Recoil based on Texture - [Implemented in Part 2](https://www.youtube.com/watch?v=pwq7F5DeQnI&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=2)
+* Reloading - [Implemented in Part 4](https://www.youtube.com/watch?v=Tn8RYWnEd94&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=4)
 * Attachments - Coming with a Future Video
 * Animated Models - Coming with a Future Video
-* Simple Impact Damage - [Implemented in Part 3](https://youtu.be/6yvUmSxlGQo) with "IDamageable" System for damaging arbitrary objects including enemies.
+* Sound Effects - [Implemented in Part 5](https://www.youtube.com/watch?v=hV3BAw2c9Io&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=5)
+* Simple Impact Damage - [Implemented in Part 3](https://www.youtube.com/watch?v=6yvUmSxlGQo&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=3) with "IDamageable" System for damaging arbitrary objects including enemies.
 * Damage Effects such as burning, freezing, explosions, etc... - Coming with a Future Video
 * And even more! - Coming with a Future Video
 
