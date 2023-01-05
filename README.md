@@ -55,6 +55,7 @@ Head over to https://patreon.com/llamacademy to show your support.
 * EJ
 * Sean
 * ag10g
+* Elijah Singer
 * Vita Prochazka
 * Lurking Ninja
 * YOUR NAME HERE!
