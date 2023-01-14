@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 310534426612849002}
   - component: {fileID: 6370634450134811630}
   - component: {fileID: 1264642818633494960}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Muzzle Flash Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 34726537663417816}
   - component: {fileID: 204129688658193004}
   - component: {fileID: 192783462066739748}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Decal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4903,7 +4903,7 @@ GameObject:
   - component: {fileID: 192434012813806350}
   - component: {fileID: 193478038711089094}
   - component: {fileID: 1308755586923084561}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Orange Hit Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9810,7 +9810,7 @@ GameObject:
   - component: {fileID: 34882871628430792}
   - component: {fileID: 192195263206664738}
   - component: {fileID: 193524104895851514}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Dust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14463,7 +14463,7 @@ GameObject:
   - component: {fileID: 34796585902926304}
   - component: {fileID: 204227937245565770}
   - component: {fileID: 193385644208279866}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Dust2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

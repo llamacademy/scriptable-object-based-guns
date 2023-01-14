@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e29a1cd59aa11e48b0094a4ed015a47, type: 3}
   m_Name: M4A1 Shoot Config
   m_EditorClassIdentifier: 
+  IsHitscan: 0
+  BulletPrefab: {fileID: 5621597393531430082, guid: 22cdbfeadea953c4d814da4bd2adad68,
+    type: 3}
+  BulletSpawnForce: 1000
   HitMask:
     serializedVersion: 2
     m_Bits: 385
