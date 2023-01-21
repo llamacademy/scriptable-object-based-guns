@@ -16,12 +16,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 385
   FireRate: 0.25
-  SpreadType: 2
+  SpreadType: 1
   RecoilRecoverySpeed: 0.25
-  RecoilResetAngleAllowance: 0.05
+  MaxSpreadTime: 3
   Spread: {x: 0.03, y: 0.03, z: 0.03}
   SpreadMultiplier: 1
-  AdvancedSpreadTexture: {fileID: 2800000, guid: 73cee0f2b9968314d8279958263885a5,
-    type: 3}
-  MaxSpreadTime: 3
-  SpriteRenderer: {fileID: 0}
+  SpreadTexture: {fileID: 0}

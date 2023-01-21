@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf304cc49f7e38c438d288d69c1d38d8, type: 3}
+  m_Name: M4A1 Audio Config
+  m_EditorClassIdentifier: 
+  Volume: 0.5
+  FireClips:
+  - {fileID: 8300000, guid: 965cd7c7dbce44c4c9e9d326a43b8ebe, type: 3}
+  EmptyClip: {fileID: 0}
+  ReloadClip: {fileID: 8300000, guid: 271c8e246cf82ac489f60dc0c49a0970, type: 3}
+  LastBulletClip: {fileID: 8300000, guid: ef2ada2ab023d374cb7e630560869a35, type: 3}
