@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f05eebee7dd21149b14060d6f342497, type: 3}
   m_Name: Impact Audio Effect
   m_EditorClassIdentifier: 
-  AudioSourcePrefab: {fileID: 3164733090673829869, guid: 4fc9bfae7050e964cac739e3bbbd1807,
+  AudioSourcePrefab: {fileID: 5773737328097785062, guid: 4fc9bfae7050e964cac739e3bbbd1807,
     type: 3}
   AudioClips:
-  - {fileID: 8300000, guid: 646f92e6aa1773945a866259a4367e3c, type: 3}
-  - {fileID: 8300000, guid: 42cfc2e40b44cc24289d6c39bf9a11d8, type: 3}
+  - {fileID: 8300000, guid: 7af50e91ddb994f40ba3ac918fb60732, type: 3}
   VolumeRange: {x: 0.25, y: 0.25}

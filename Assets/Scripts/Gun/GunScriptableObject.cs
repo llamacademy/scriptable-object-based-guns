@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Net;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -166,6 +164,11 @@ public class GunScriptableObject : ScriptableObject
         }
     }
 
+    /// <summary>
+    /// Generates a live Bullet instance that is launched in the <paramref name="ShootDirection"/> direction
+    /// with velocity from <see cref="ShootConfigScriptableObject.BulletSpawnForce"/>.
+    /// </summary>
+    /// <param name="ShootDirection"></param>
     private void DoProjectileShoot(Vector3 ShootDirection)
     {
         Bullet bullet = BulletPool.Get();
@@ -184,6 +187,13 @@ public class GunScriptableObject : ScriptableObject
         }
     }
 
+    /// <summary>
+    /// Performs a Raycast to determine if a shot hits something. Spawns a TrailRenderer
+    /// and will apply impact effects and damage after the TrailRenderer simulates moving to the
+    /// hit point. 
+    /// See <see cref="PlayTrail(Vector3, Vector3, RaycastHit)"/> for impact logic.
+    /// </summary>
+    /// <param name="ShootDirection"></param>
     private void DoHitscanShoot(Vector3 ShootDirection)
     {
         if (Physics.Raycast(
@@ -259,6 +269,12 @@ public class GunScriptableObject : ScriptableObject
         TrailPool.Release(instance);
     }
 
+    /// <summary>
+    /// Callback handler for <see cref="Bullet.OnCollsion"/>. Disables TrailRenderer, releases the 
+    /// Bullet from the BulletPool, and applies impact effects if <paramref name="Collision"/> is not null.
+    /// </summary>
+    /// <param name="Bullet"></param>
+    /// <param name="Collision"></param>
     private void HandleBulletCollision(Bullet Bullet, Collision Collision)
     {
         TrailRenderer trail = Bullet.GetComponentInChildren<TrailRenderer>();
@@ -284,6 +300,12 @@ public class GunScriptableObject : ScriptableObject
         }
     }
 
+    /// <summary>
+    /// Disables the trail renderer based on the <see cref="TrailConfigScriptableObject.Duration"/> provided
+    ///and releases it from the<see cref="TrailPool"/>
+    /// </summary>
+    /// <param name="Trail"></param>
+    /// <returns></returns>
     private IEnumerator DelayedDisableTrail(TrailRenderer Trail)
     {
         yield return new WaitForSeconds(TrailConfig.Duration);
@@ -293,6 +315,14 @@ public class GunScriptableObject : ScriptableObject
         TrailPool.Release(Trail);
     }
 
+    /// <summary>
+    /// Calls <see cref="SurfaceManager.HandleImpact(GameObject, Vector3, Vector3, ImpactType, int)"/> and applies damage
+    /// if a damagable object was hit
+    /// </summary>
+    /// <param name="DistanceTraveled"></param>
+    /// <param name="HitLocation"></param>
+    /// <param name="HitNormal"></param>
+    /// <param name="HitCollider"></param>
     private void HandleBulletImpact(
         float DistanceTraveled, 
         Vector3 HitLocation, 
@@ -333,6 +363,10 @@ public class GunScriptableObject : ScriptableObject
         return trail;
     }
 
+    /// <summary>
+    /// Creates a Bullet for use in the object pool.
+    /// </summary>
+    /// <returns>A live Bullet GameObject</returns>
     private Bullet CreateBullet()
     {
         return Instantiate(ShootConfig.BulletPrefab);   

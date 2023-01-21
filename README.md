@@ -3,7 +3,7 @@ Learn how to create a ScriptableObject-based gun system from scratch for your ga
 
 In this tutorial repository and accompanying [video series](https://www.youtube.com/watch?v=E-vIMamyORg&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to), you'll learn how to make a configuration-driven gun system with ScriptableObjects that will be able to have:
 * Hitscan Guns - [Implemented in Part 1](https://www.youtube.com/watch?v=E-vIMamyORg&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=1)
-* Projectile Guns - Coming with a Future Video
+* Projectile Guns - [Implemented in Part 6](https://www.youtube.com/watch?v=RuW3IfolP-s&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=6)
 * Simple Bullet Spread & Recoil - [Implemented in Part 1](https://www.youtube.com/watch?v=E-vIMamyORg&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=1).
 * Simple Procedural Recoil - [Implemented in Part 2](https://www.youtube.com/watch?v=pwq7F5DeQnI&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=2)
 * Procedural Recoil based on Texture - [Implemented in Part 2](https://www.youtube.com/watch?v=pwq7F5DeQnI&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=2)
@@ -24,9 +24,11 @@ If you're following along with the tutorial series, check out the appropriate br
 
 Make sure to import the [Unity Particle Pack](https://assetstore.unity.com/packages/essentials/tutorial-projects/unity-particle-pack-127325) after checking out this repository for all the bullet shooting and impact effects.
 
-## Patreon Supporters
+## Supporters
 Have you been getting value out of these tutorials? Do you believe in LlamAcademy's mission of helping everyone make their game dev dream become a reality? Consider becoming a Patreon supporter and get your name added to this list, as well as other cool perks.
 Head over to https://patreon.com/llamacademy to show your support.
+
+If you'd prefer to become a [YouTube Member](https://www.youtube.com/channel/UCnWm6pMD38R1E2vCAByGb6w/join) you can get all the same benefits on that platform!
 
 ### Phenomenal Supporter Tier
 * Andrew Bowen
@@ -42,8 +44,9 @@ Head over to https://patreon.com/llamacademy to show your support.
 * AudemKay
 * Matt Parkin
 * Ivan
-* Paul Berry
 * Reulan
+* Paul Berry
+* Iffy Obelus
 * YOUR NAME HERE!
 
 ### Supporters
@@ -58,6 +61,7 @@ Head over to https://patreon.com/llamacademy to show your support.
 * Elijah Singer
 * Vita Prochazka
 * Lurking Ninja
+* Josh Meyer
 * YOUR NAME HERE!
 
 ## Other Projects

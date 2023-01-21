@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e29a1cd59aa11e48b0094a4ed015a47, type: 3}
-  m_Name: M4A1 Shoot Config
+  m_Name: Rocket Launcher Shoot Config
   m_EditorClassIdentifier: 
   IsHitscan: 0
-  BulletPrefab: {fileID: 4134854555783104936, guid: 22cdbfeadea953c4d814da4bd2adad68,
+  BulletPrefab: {fileID: 7634089679691573872, guid: f81a434aa46ee704f9acc6eaea17cdc7,
     type: 3}
-  BulletSpawnForce: 1000
+  BulletSpawnForce: 1250
   HitMask:
     serializedVersion: 2
     m_Bits: 385
-  FireRate: 0.05
+  FireRate: 1.5
   SpreadType: 1
-  RecoilRecoverySpeed: 2
-  MaxSpreadTime: 2
-  Spread: {x: 0.025, y: 0.025, z: 0.025}
-  SpreadMultiplier: 0.05
-  SpreadTexture: {fileID: 2800000, guid: 73cee0f2b9968314d8279958263885a5, type: 3}
+  RecoilRecoverySpeed: 1
+  MaxSpreadTime: 1
+  Spread: {x: 0.1, y: 0.1, z: 0.1}
+  SpreadMultiplier: 0.1
+  SpreadTexture: {fileID: 0}
