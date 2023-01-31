@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6762594374915201075}
   - component: {fileID: 6851349342840357011}
   - component: {fileID: 6850649200107147667}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Mist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4839,8 +4839,8 @@ GameObject:
   - component: {fileID: 6757307171439758069}
   - component: {fileID: 6851977458239882127}
   - component: {fileID: 6850216406790911593}
-  m_Layer: 0
-  m_Name: Eyeball Hit Effect
+  m_Layer: 1
+  m_Name: Eyball Hit Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9738,7 +9738,7 @@ GameObject:
   - component: {fileID: 6757594270367142221}
   - component: {fileID: 6875036506796046323}
   - component: {fileID: 6850632379681486965}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Streaks
   m_TagString: Untagged
   m_Icon: {fileID: 0}

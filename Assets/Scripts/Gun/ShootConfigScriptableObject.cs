@@ -4,6 +4,9 @@ using System.Linq;
 [CreateAssetMenu(fileName = "Shoot Config", menuName = "Guns/Shoot Config", order = 2)]
 public class ShootConfigScriptableObject : ScriptableObject
 {
+    public bool IsHitscan = true;
+    public Bullet BulletPrefab;
+    public float BulletSpawnForce = 100;
     public LayerMask HitMask;
     public float FireRate = 0.25f;
     public BulletSpreadType SpreadType = BulletSpreadType.Simple;
@@ -16,6 +19,12 @@ public class ShootConfigScriptableObject : ScriptableObject
     public float SpreadMultiplier = 0.1f;
     public Texture2D SpreadTexture;
 
+    /**
+     * Calculates and returns the offset from "forward" that should be applied for the bullet
+     * based on <param name="ShootTime"/>. The closer to <see cref="MaxSpreadTime"/> this is, the
+     * larger area of <see cref="SpreadTexture"/> is read, or wider range of <see cref="Spread"/>
+     * is used, depending on <see cref="SpreadType"/>
+     */
     public Vector3 GetSpread(float ShootTime = 0)
     {
         Vector3 spread = Vector3.zero;
@@ -41,7 +50,13 @@ public class ShootConfigScriptableObject : ScriptableObject
         return spread;
     }
 
-    private Vector3 GetTextureDirection(float ShootTime)
+    /**
+     * Reads provided <see cref="SpreadTexture"/> and uses a weighted random algorithm
+     * to determine the spread. <param name="ShootTime" /> indicates how long the player
+     * has been shooting, larger values, closer to <see cref="MaxSpreadTime"/> will sample
+     * larger areas of the texture
+     */
+    private Vector2 GetTextureDirection(float ShootTime)
     {
         Vector2 halfSize = new Vector2(SpreadTexture.width / 2f, SpreadTexture.height / 2f);
 

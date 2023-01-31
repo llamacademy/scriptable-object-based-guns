@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3505772186453862231}
   - component: {fileID: 3605527869144875235}
   - component: {fileID: 3634608486102151339}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Decal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4903,7 +4903,7 @@ GameObject:
   - component: {fileID: 3636646904978973057}
   - component: {fileID: 3635251389988691273}
   - component: {fileID: 2996155850690548074}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: White Hit Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9810,7 +9810,7 @@ GameObject:
   - component: {fileID: 3505968101782689607}
   - component: {fileID: 3636250096263348397}
   - component: {fileID: 3635486291916292469}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Dust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14463,7 +14463,7 @@ GameObject:
   - component: {fileID: 3505984070638109551}
   - component: {fileID: 3605640140259097029}
   - component: {fileID: 3635343438544780213}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Dust2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

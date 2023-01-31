@@ -1,5 +1,6 @@
 public enum GunType
 {
     Glock,
-    M4A1
+    M4A1,
+    RocketLauncher
 }

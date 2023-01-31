@@ -27,6 +27,7 @@ public class GunScriptableObject : ScriptableObject
 
     private ParticleSystem ShootSystem;
     private ObjectPool<TrailRenderer> TrailPool;
+    private ObjectPool<Bullet> BulletPool;
     private bool LastFrameWantedToShoot;
 
     /// <summary>
@@ -48,6 +49,10 @@ public class GunScriptableObject : ScriptableObject
         AmmoConfig.CurrentAmmo = AmmoConfig.MaxAmmo;
 
         TrailPool = new ObjectPool<TrailRenderer>(CreateTrail);
+        if (!ShootConfig.IsHitscan)
+        {
+            BulletPool = new ObjectPool<Bullet>(CreateBullet);
+        }
 
         Model = Instantiate(ModelPrefab);
         Model.transform.SetParent(Parent, false);
@@ -148,32 +153,74 @@ public class GunScriptableObject : ScriptableObject
 
             AmmoConfig.CurrentClipAmmo--;
 
-            if (Physics.Raycast(
-                    ShootSystem.transform.position,
-                    shootDirection,
-                    out RaycastHit hit,
-                    float.MaxValue,
-                    ShootConfig.HitMask
-                ))
+            if (ShootConfig.IsHitscan)
             {
-                ActiveMonoBehaviour.StartCoroutine(
-                    PlayTrail(
-                        ShootSystem.transform.position,
-                        hit.point,
-                        hit
-                    )
-                );
+                DoHitscanShoot(shootDirection);
             }
             else
             {
-                ActiveMonoBehaviour.StartCoroutine(
-                    PlayTrail(
-                        ShootSystem.transform.position,
-                        ShootSystem.transform.position + (shootDirection * TrailConfig.MissDistance),
-                        new RaycastHit()
-                    )
-                );
+                DoProjectileShoot(shootDirection);
             }
+        }
+    }
+
+    /// <summary>
+    /// Generates a live Bullet instance that is launched in the <paramref name="ShootDirection"/> direction
+    /// with velocity from <see cref="ShootConfigScriptableObject.BulletSpawnForce"/>.
+    /// </summary>
+    /// <param name="ShootDirection"></param>
+    private void DoProjectileShoot(Vector3 ShootDirection)
+    {
+        Bullet bullet = BulletPool.Get();
+        bullet.gameObject.SetActive(true);
+        bullet.OnCollsion += HandleBulletCollision;
+        bullet.transform.position = ShootSystem.transform.position;
+        bullet.Spawn(ShootDirection * ShootConfig.BulletSpawnForce);
+        
+        TrailRenderer trail = TrailPool.Get();
+        if (trail != null)
+        {
+            trail.transform.SetParent(bullet.transform, false);
+            trail.transform.localPosition = Vector3.zero;
+            trail.emitting = true;
+            trail.gameObject.SetActive(true);
+        }
+    }
+
+    /// <summary>
+    /// Performs a Raycast to determine if a shot hits something. Spawns a TrailRenderer
+    /// and will apply impact effects and damage after the TrailRenderer simulates moving to the
+    /// hit point. 
+    /// See <see cref="PlayTrail(Vector3, Vector3, RaycastHit)"/> for impact logic.
+    /// </summary>
+    /// <param name="ShootDirection"></param>
+    private void DoHitscanShoot(Vector3 ShootDirection)
+    {
+        if (Physics.Raycast(
+                ShootSystem.transform.position,
+                ShootDirection,
+                out RaycastHit hit,
+                float.MaxValue,
+                ShootConfig.HitMask
+            ))
+        {
+            ActiveMonoBehaviour.StartCoroutine(
+                PlayTrail(
+                    ShootSystem.transform.position,
+                    hit.point,
+                    hit
+                )
+            );
+        }
+        else
+        {
+            ActiveMonoBehaviour.StartCoroutine(
+                PlayTrail(
+                    ShootSystem.transform.position,
+                    ShootSystem.transform.position + (ShootDirection * TrailConfig.MissDistance),
+                    new RaycastHit()
+                )
+            );
         }
     }
 
@@ -212,18 +259,7 @@ public class GunScriptableObject : ScriptableObject
 
         if (Hit.collider != null)
         {
-            SurfaceManager.Instance.HandleImpact(
-                Hit.transform.gameObject,
-                EndPoint,
-                Hit.normal,
-                ImpactType,
-                0
-            );
-
-            if (Hit.collider.TryGetComponent(out IDamageable damageable))
-            {
-                damageable.TakeDamage(DamageConfig.GetDamage(distance));
-            }
+            HandleBulletImpact(distance, EndPoint, Hit.normal, Hit.collider);
         }
 
         yield return new WaitForSeconds(TrailConfig.Duration);
@@ -231,6 +267,80 @@ public class GunScriptableObject : ScriptableObject
         instance.emitting = false;
         instance.gameObject.SetActive(false);
         TrailPool.Release(instance);
+    }
+
+    /// <summary>
+    /// Callback handler for <see cref="Bullet.OnCollsion"/>. Disables TrailRenderer, releases the 
+    /// Bullet from the BulletPool, and applies impact effects if <paramref name="Collision"/> is not null.
+    /// </summary>
+    /// <param name="Bullet"></param>
+    /// <param name="Collision"></param>
+    private void HandleBulletCollision(Bullet Bullet, Collision Collision)
+    {
+        TrailRenderer trail = Bullet.GetComponentInChildren<TrailRenderer>();
+        if (trail != null)
+        {
+            trail.transform.SetParent(null, true);
+            ActiveMonoBehaviour.StartCoroutine(DelayedDisableTrail(trail));
+        }
+        
+        Bullet.gameObject.SetActive(false);
+        BulletPool.Release(Bullet);
+
+        if (Collision != null)
+        {
+            ContactPoint contactPoint = Collision.GetContact(0);
+
+            HandleBulletImpact(
+                Vector3.Distance(contactPoint.point, Bullet.SpawnLocation),
+                contactPoint.point,
+                contactPoint.normal,
+                contactPoint.otherCollider
+            );
+        }
+    }
+
+    /// <summary>
+    /// Disables the trail renderer based on the <see cref="TrailConfigScriptableObject.Duration"/> provided
+    ///and releases it from the<see cref="TrailPool"/>
+    /// </summary>
+    /// <param name="Trail"></param>
+    /// <returns></returns>
+    private IEnumerator DelayedDisableTrail(TrailRenderer Trail)
+    {
+        yield return new WaitForSeconds(TrailConfig.Duration);
+        yield return null;
+        Trail.emitting = false;
+        Trail.gameObject.SetActive(false);
+        TrailPool.Release(Trail);
+    }
+
+    /// <summary>
+    /// Calls <see cref="SurfaceManager.HandleImpact(GameObject, Vector3, Vector3, ImpactType, int)"/> and applies damage
+    /// if a damagable object was hit
+    /// </summary>
+    /// <param name="DistanceTraveled"></param>
+    /// <param name="HitLocation"></param>
+    /// <param name="HitNormal"></param>
+    /// <param name="HitCollider"></param>
+    private void HandleBulletImpact(
+        float DistanceTraveled, 
+        Vector3 HitLocation, 
+        Vector3 HitNormal, 
+        Collider HitCollider)
+    {
+        SurfaceManager.Instance.HandleImpact(
+                HitCollider.gameObject,
+                HitLocation,
+                HitNormal,
+                ImpactType,
+                0
+            );
+
+        if (HitCollider.TryGetComponent(out IDamageable damageable))
+        {
+            damageable.TakeDamage(DamageConfig.GetDamage(DistanceTraveled));
+        }
     }
 
     /// <summary>
@@ -251,5 +361,14 @@ public class GunScriptableObject : ScriptableObject
         trail.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
 
         return trail;
+    }
+
+    /// <summary>
+    /// Creates a Bullet for use in the object pool.
+    /// </summary>
+    /// <returns>A live Bullet GameObject</returns>
+    private Bullet CreateBullet()
+    {
+        return Instantiate(ShootConfig.BulletPrefab);   
     }
 }
