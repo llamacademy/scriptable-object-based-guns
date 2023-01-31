@@ -3,7 +3,7 @@ Learn how to create a ScriptableObject-based gun system from scratch for your ga
 
 In this tutorial repository and accompanying [video series](https://www.youtube.com/watch?v=E-vIMamyORg&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to), you'll learn how to make a configuration-driven gun system with ScriptableObjects that will be able to have:
 * Hitscan Guns - [Implemented in Part 1](https://www.youtube.com/watch?v=E-vIMamyORg&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=1)
-* Projectile Guns - [Implemented in Part 6](https://www.youtube.com/watch?v=RuW3IfolP-s&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=6)
+* Projectile Guns - [Implemented in Part 6](https://www.youtube.com/watch?v=LIB7uGDZou0&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=6)
 * Simple Bullet Spread & Recoil - [Implemented in Part 1](https://www.youtube.com/watch?v=E-vIMamyORg&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=1).
 * Simple Procedural Recoil - [Implemented in Part 2](https://www.youtube.com/watch?v=pwq7F5DeQnI&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=2)
 * Procedural Recoil based on Texture - [Implemented in Part 2](https://www.youtube.com/watch?v=pwq7F5DeQnI&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=2)
