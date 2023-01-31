@@ -62,6 +62,7 @@ If you'd prefer to become a [YouTube Member](https://www.youtube.com/channel/UCn
 * Vita Prochazka
 * Lurking Ninja
 * Josh Meyer
+* Ewald Schulte
 * YOUR NAME HERE!
 
 ## Other Projects
