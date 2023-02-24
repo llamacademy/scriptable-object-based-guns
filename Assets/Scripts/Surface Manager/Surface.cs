@@ -1,15 +1,19 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using LlamAcademy.ImpactSystem.Effects;
 
-[CreateAssetMenu(menuName = "Impact System/Surface", fileName = "Surface")]
-public class Surface : ScriptableObject
+namespace LlamAcademy.ImpactSystem
 {
-    [Serializable]
-    public class SurfaceImpactTypeEffect
+    [CreateAssetMenu(menuName = "Impact System/Surface", fileName = "Surface")]
+    public class Surface : ScriptableObject
     {
-        public ImpactType ImpactType;
-        public SurfaceEffect SurfaceEffect;
+        [Serializable]
+        public class SurfaceImpactTypeEffect
+        {
+            public ImpactType ImpactType;
+            public SurfaceEffect SurfaceEffect;
+        }
+        public List<SurfaceImpactTypeEffect> ImpactTypeEffects = new List<SurfaceImpactTypeEffect>();
     }
-    public List<SurfaceImpactTypeEffect> ImpactTypeEffects = new List<SurfaceImpactTypeEffect>();
 }

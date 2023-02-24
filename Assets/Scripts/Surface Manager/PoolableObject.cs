@@ -1,15 +1,18 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class PoolableObject : MonoBehaviour
+namespace LlamAcademy.ImpactSystem.Pool
 {
-    public ObjectPool<GameObject> Parent;
-
-    private void OnDisable()
+    public class PoolableObject : MonoBehaviour
     {
-        if (Parent != null)
+        public ObjectPool<GameObject> Parent;
+
+        private void OnDisable()
         {
-            Parent.Release(gameObject);
+            if (Parent != null)
+            {
+                Parent.Release(gameObject);
+            }
         }
     }
 }

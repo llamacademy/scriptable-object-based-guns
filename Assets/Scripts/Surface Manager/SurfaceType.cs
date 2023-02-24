@@ -1,8 +1,11 @@
 using UnityEngine;
 
-[System.Serializable]
-public class SurfaceType
+namespace LlamAcademy.ImpactSystem
 {
-    public Texture Albedo;
-    public Surface Surface;
+    [System.Serializable]
+    public class SurfaceType
+    {
+        public Texture Albedo;
+        public Surface Surface;
+    }
 }
