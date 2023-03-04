@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Scripts/Guns/Editor/RootStyles.uss?fileID=7433441132597879392&amp;guid=120a088c6e5691046bb397cc999b1f0f&amp;type=3#RootStyles" />
+    <ui:VisualElement name="container" class="align-horizontal">
+        <ui:Slider picking-mode="Ignore" label="Slider" value="42" high-value="100" name="slider" class="flex-grow" />
+        <uie:FloatField value="0" name="input" style="min-width: 35px;" />
+    </ui:VisualElement>
+</ui:UXML>

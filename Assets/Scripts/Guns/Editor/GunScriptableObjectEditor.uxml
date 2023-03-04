@@ -1,0 +1,18 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Assets/Scripts/Guns/Editor/RootStyles.uss?fileID=7433441132597879392&amp;guid=120a088c6e5691046bb397cc999b1f0f&amp;type=3#RootStyles" />
+    <Style src="project://database/Assets/Scripts/Guns/Editor/GunScriptableObjectEditor.uss?fileID=7433441132597879392&amp;guid=e3d25dd852d4117489737110898f3007&amp;type=3#GunScriptableObjectEditor" />
+    <Style src="project://database/Assets/Scripts/Guns/Editor/ScriptableObjectCreator.uss?fileID=7433441132597879392&amp;guid=881a4b16e1b158f4fb78ee2d26dfdc7b&amp;type=3#ScriptableObjectCreator" />
+    <ui:VisualElement class="panel">
+        <ui:Label text="General Properties" display-tooltip-when-elided="true" class="header" />
+        <uie:EnumField label="Gun Type" value="M4A1" binding-path="Type" type="LlamAcademy.Guns.GunType, LlamAcademy.Guns" />
+        <ui:TextField picking-mode="Ignore" label="Name" value="M4A1" binding-path="Name" />
+        <uie:ObjectField label="Model Prefab" binding-path="ModelPrefab" type="UnityEngine.GameObject, UnityEngine.CoreModule" />
+        <uie:Vector3Field label="Spawn Point" binding-path="SpawnPoint" />
+        <uie:Vector3Field label="Spawn Rotation" binding-path="SpawnRotation" />
+    </ui:VisualElement>
+    <uie:PropertyField binding-path="AmmoConfig" />
+    <uie:PropertyField binding-path="DamageConfig" />
+    <uie:PropertyField binding-path="ShootConfig" />
+    <uie:PropertyField binding-path="TrailConfig" />
+    <uie:PropertyField binding-path="AudioConfig" />
+</ui:UXML>

@@ -1,0 +1,24 @@
+.unity-label.rotate-0 {
+	align-self: center;
+	padding: 0;
+	margin: 0;
+	rotate: 0deg;
+	transition: rotate 0.25s;
+}
+
+.unity-label.rotate-90 {
+	align-self: center;
+	padding: 0;
+	margin: 0;
+	rotate: 90deg;
+	transition: rotate 0.25s;
+}
+
+.collapsed {
+	overflow: hidden;
+	height: 0;
+}
+
+.expanded {
+	height: auto;
+}

@@ -1,8 +1,5 @@
 using UnityEngine;
 using System.Linq;
-using static Unity.Burst.Intrinsics.X86;
-using static UnityEngine.Rendering.DebugUI.Table;
-using UnityEditor.PackageManager.UI;
 
 namespace LlamAcademy.Guns
 {

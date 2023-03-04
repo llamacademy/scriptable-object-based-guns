@@ -9,6 +9,11 @@ namespace LlamAcademy.Guns
     {
         Glock,
         M4A1,
-        RocketLauncher
+        RocketLauncher,
+        Shotgun,
+        SniperRifle,
+        GrenadeLauncher,
+        AK47,
+        MP5
     }
 }

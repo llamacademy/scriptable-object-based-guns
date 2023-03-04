@@ -11,7 +11,7 @@ namespace LlamAcademy.Guns.Demo.Editors
         {
             PlayerAction action = (PlayerAction)target;
 
-            if (Application.isPlaying) // can't show any visualization if we aren't in play mode
+            if (EditorApplication.isPlaying) // can't show any visualization if we aren't in play mode
             {
                 Camera camera = action.GunSelector.Camera;
                 GunScriptableObject gun = action.GunSelector.ActiveGun;
@@ -27,7 +27,6 @@ namespace LlamAcademy.Guns.Demo.Editors
 
                     Handles.color = Color.red;
                     Handles.DrawLine(camera.transform.position, startPoint);
-
                 }
                 else
                 {
