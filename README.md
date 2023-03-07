@@ -3,15 +3,16 @@ Learn how to create a ScriptableObject-based gun system from scratch for your ga
 
 In this tutorial repository and accompanying [video series](https://www.youtube.com/watch?v=E-vIMamyORg&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to), you'll learn how to make a configuration-driven gun system with ScriptableObjects that will be able to have:
 * Hitscan Guns - [Implemented in Part 1](https://www.youtube.com/watch?v=E-vIMamyORg&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=1)
-* Projectile Guns - [Implemented in Part 6](https://www.youtube.com/watch?v=LIB7uGDZou0&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=6)
 * Simple Bullet Spread & Recoil - [Implemented in Part 1](https://www.youtube.com/watch?v=E-vIMamyORg&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=1).
 * Simple Procedural Recoil - [Implemented in Part 2](https://www.youtube.com/watch?v=pwq7F5DeQnI&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=2)
 * Procedural Recoil based on Texture - [Implemented in Part 2](https://www.youtube.com/watch?v=pwq7F5DeQnI&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=2)
+* Simple Impact Damage - [Implemented in Part 3](https://www.youtube.com/watch?v=6yvUmSxlGQo&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=3) with `IDamageable` System for damaging arbitrary objects including enemies.
 * Reloading - [Implemented in Part 4](https://www.youtube.com/watch?v=Tn8RYWnEd94&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=4)
+* Sound Effects - [Implemented in Part 5](https://www.youtube.com/watch?v=hV3BAw2c9Io&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=5)
+* Projectile Guns - [Implemented in Part 6](https://www.youtube.com/watch?v=LIB7uGDZou0&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=6)
+* Accurate Aiming / Crosshairs - [Implemented in Part 7](https://www.youtube.com/watch?v=x8ECpNWMmag&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=7&pp=sAQB)
 * Attachments - Coming with a Future Video
 * Animated Models - Coming with a Future Video
-* Sound Effects - [Implemented in Part 5](https://www.youtube.com/watch?v=hV3BAw2c9Io&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=5)
-* Simple Impact Damage - [Implemented in Part 3](https://www.youtube.com/watch?v=6yvUmSxlGQo&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=3) with "IDamageable" System for damaging arbitrary objects including enemies.
 * Damage Effects such as burning, freezing, explosions, etc... - Coming with a Future Video
 * And even more! - Coming with a Future Video
 
@@ -32,7 +33,6 @@ If you'd prefer to become a [YouTube Member](https://www.youtube.com/channel/UCn
 
 ### Phenomenal Supporter Tier
 * Andrew Bowen
-* Andrew Allbright
 * YOUR NAME HERE!
 
 ### Tremendous Supporter Tier
@@ -45,8 +45,8 @@ If you'd prefer to become a [YouTube Member](https://www.youtube.com/channel/UCn
 * Matt Parkin
 * Ivan
 * Reulan
-* Paul Berry
 * Iffy Obelus
+* Paul Berry
 * YOUR NAME HERE!
 
 ### Supporters
@@ -55,18 +55,18 @@ If you'd prefer to become a [YouTube Member](https://www.youtube.com/channel/UCn
 * Matt Sponholz
 * Dr Bash
 * Tarik
-* EJ
 * Sean
 * ag10g
 * Elijah Singer
-* Vita Prochazka
 * Lurking Ninja
 * Josh Meyer
 * Ewald Schulte
+* Dom C
+* Andrew Allbright
 * YOUR NAME HERE!
 
 ## Other Projects
-Interested in other AI Topics in Unity, or other tutorials on Unity in general? 
+Interested in AI Topics in Unity, or other tutorials on Unity in general? 
 
 * [Check out the LlamAcademy YouTube Channel](https://youtube.com/c/LlamAcademy)!
 * [Check out the LlamAcademy GitHub for more projects](https://github.com/llamacademy)
@@ -82,3 +82,4 @@ Interested in other AI Topics in Unity, or other tutorials on Unity in general?
 ## Requirements
 * Requires Unity 2021.3 LTS or higher.
 * [Unity Particle Pack](https://assetstore.unity.com/packages/essentials/tutorial-projects/unity-particle-pack-127325)
+* [Surface Manager](https://github.com/llamacademy/surface-manager) - Included in this repository, but not covered in the tutorial series. Tutorial [video here](https://youtu.be/kT2ZxjMuT_4)).

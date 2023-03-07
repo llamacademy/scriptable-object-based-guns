@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Impact System/Play Audio Effect", fileName = "PlayAudioEffect")]
-public class PlayAudioEffect : ScriptableObject
+namespace LlamAcademy.ImpactSystem.Effects
 {
-    public AudioSource AudioSourcePrefab;
-    public List<AudioClip> AudioClips = new List<AudioClip>();
-    [Tooltip("Values are clamped to 0-1")]
-    public Vector2 VolumeRange = new Vector2(0, 1);
+    [CreateAssetMenu(menuName = "Impact System/Play Audio Effect", fileName = "PlayAudioEffect")]
+    public class PlayAudioEffect : ScriptableObject
+    {
+        public AudioSource AudioSourcePrefab;
+        public List<AudioClip> AudioClips = new List<AudioClip>();
+        [Tooltip("Values are clamped to 0-1")]
+        public Vector2 VolumeRange = new Vector2(0, 1);
+    }
 }
