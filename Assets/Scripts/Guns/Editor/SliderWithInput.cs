@@ -14,9 +14,25 @@ namespace LlamAcademy.Guns.Editors
         private Slider Slider => this.Q<Slider>("slider");
         private FloatField Input => this.Q<FloatField>("input");
 
-        public SliderWithInput(SerializedProperty Property, string Label = "", float MinValue = 0, float MaxValue = 10)
+        public SliderWithInput(
+            SerializedProperty Property,
+            string Label = "",
+            float MinValue = 0,
+            float MaxValue = 10)
         {
-            VisualTreeAsset asset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Guns/Editor/SliderWithInput.uxml");
+            Init(Property, Label, MinValue, MaxValue);
+        }
+
+        public void Init(
+            SerializedProperty Property,
+            string Label = "",
+            float MinValue = 0,
+            float MaxValue = 10)
+        {
+            VisualTreeAsset asset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(
+                "Assets/Scripts/Guns/Editor/SliderWithInput.uxml"
+            );
+
             asset.CloneTree(this);
 
             Slider.lowValue = MinValue;
