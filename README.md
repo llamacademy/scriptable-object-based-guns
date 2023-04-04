@@ -25,6 +25,10 @@ If you're following along with the tutorial series, check out the appropriate br
 
 Make sure to import the [Unity Particle Pack](https://assetstore.unity.com/packages/essentials/tutorial-projects/unity-particle-pack-127325) after checking out this repository for all the bullet shooting and impact effects.
 
+You can import just the folder "EffectExamples" and ignore the rest of the files. This will prevent overriding all your project settings.
+
+As of April 4, 2023, this uses [Assembly Definitions](https://docs.unity3d.com/Manual/ScriptCompilationAssemblyDefinitionFiles.html) ([tutorial]()) to package the files. If you are using Assembly Definition files in your project, you may need to add references to `LlamAcademy.Guns`, `LlamAcademy.ImpactSystem`, and if you choose to use the demo scripts, `LlamAcademy.Guns.Demo`.
+
 ## Supporters
 Have you been getting value out of these tutorials? Do you believe in LlamAcademy's mission of helping everyone make their game dev dream become a reality? Consider becoming a Patreon supporter and get your name added to this list, as well as other cool perks.
 Head over to https://patreon.com/llamacademy to show your support.
@@ -46,6 +50,7 @@ If you'd prefer to become a [YouTube Member](https://www.youtube.com/channel/UCn
 * Ivan
 * Reulan
 * Iffy Obelus
+* Fernando
 * YOUR NAME HERE!
 
 ### Supporters
@@ -62,6 +67,9 @@ If you'd prefer to become a [YouTube Member](https://www.youtube.com/channel/UCn
 * Ewald Schulte
 * Dom C
 * Andrew Allbright
+* AudemKay
+* EJ
+* Claduiu Barsan-Pipu
 * YOUR NAME HERE!
 
 ## Other Projects
