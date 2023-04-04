@@ -1,0 +1,20 @@
+{
+    "name": "LlamAcademy.Guns.Editors",
+    "rootNamespace": "LlamAcademy.Guns.Editors",
+    "references": [
+        "GUID:b7c31939b232e514caf14b560ce02a96"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "UNITY_EDITOR"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,22 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Scripts/Guns/Editor/RootStyles.uss?fileID=7433441132597879392&amp;guid=120a088c6e5691046bb397cc999b1f0f&amp;type=3#RootStyles" />
+    <Style src="project://database/Assets/Scripts/Guns/Editor/ScriptableObjectCreator.uss?fileID=7433441132597879392&amp;guid=881a4b16e1b158f4fb78ee2d26dfdc7b&amp;type=3#ScriptableObjectCreator" />
+    <ui:VisualElement name="title-container" class="align-horizontal">
+        <ui:Label text="▸" name="caret" class="rotate-90" style="font-size: 18px;" />
+        <ui:Label text="Label" display-tooltip-when-elided="true" name="title" class="header" />
+    </ui:VisualElement>
+    <ui:VisualElement name="new-panel" class="expanded">
+        <ui:Label text="No Scriptable Object Exists!" display-tooltip-when-elided="true" name="missing-so-label" class="mb-8" />
+        <ui:Label text="Create a new one with name" display-tooltip-when-elided="true" />
+        <ui:VisualElement class="align-horizontal">
+            <ui:TextField picking-mode="Ignore" value="filler text" name="name-input" class="flex-grow" />
+            <ui:Button text="Create" display-tooltip-when-elided="true" name="create" />
+        </ui:VisualElement>
+        <ui:Label text="Select Existing" display-tooltip-when-elided="true" class="pt-4 mt-4 thin-border-top" />
+        <uie:ObjectField label="Scriptable Object" name="scriptable-object" />
+    </ui:VisualElement>
+    <ui:VisualElement name="content-panel" class="expanded">
+        <uie:ObjectField label="Scriptable Object" name="scriptable-object-existing" />
+        <ui:Button text="Delete" display-tooltip-when-elided="true" name="delete" class="align-right danger mb-8" />
+    </ui:VisualElement>
+</ui:UXML>

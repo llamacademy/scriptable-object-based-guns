@@ -46,7 +46,6 @@ If you'd prefer to become a [YouTube Member](https://www.youtube.com/channel/UCn
 * Ivan
 * Reulan
 * Iffy Obelus
-* Paul Berry
 * YOUR NAME HERE!
 
 ### Supporters

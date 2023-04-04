@@ -22,7 +22,7 @@ MonoBehaviour:
   FireRate: 0.1
   SpreadType: 1
   RecoilRecoverySpeed: 2
-  MaxSpreadTime: 2
+  MaxSpreadTime: 0.9
   ShootType: 0
   Spread: {x: 0.06, y: 0.06, z: 0.06}
   SpreadMultiplier: 0.05

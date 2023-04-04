@@ -1,0 +1,17 @@
+{
+    "name": "LlamAcademy.Guns",
+    "rootNamespace": "LlamAcademy.Guns",
+    "references": [
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:c32c53cf256ab044aad22cb6f9412a6c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
