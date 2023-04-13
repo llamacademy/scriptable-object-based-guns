@@ -31,8 +31,8 @@ namespace LlamAcademy.Guns.Demo
                 return;
             }
 
-            ActiveGun = gun;
-            gun.Spawn(GunParent, this, Camera);
+            ActiveGun = gun.Clone() as GunScriptableObject;
+            ActiveGun.Spawn(GunParent, this, Camera);
 
             // some magic for IK
             Transform[] allChildren = GunParent.GetComponentsInChildren<Transform>();

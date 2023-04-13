@@ -11,7 +11,7 @@ In this tutorial repository and accompanying [video series](https://www.youtube.
 * Sound Effects - [Implemented in Part 5](https://www.youtube.com/watch?v=hV3BAw2c9Io&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=5)
 * Projectile Guns - [Implemented in Part 6](https://www.youtube.com/watch?v=LIB7uGDZou0&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=6)
 * Accurate Aiming / Crosshairs - [Implemented in Part 7](https://www.youtube.com/watch?v=x8ECpNWMmag&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=7&pp=sAQB)
-* Attachments - Coming with a Future Video
+* Attachments - [Modifier System in Part 8](https://www.youtube.com/watch?v=RbIk6VnwHnI&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=8) - More Coming with a Future Video
 * Animated Models - Coming with a Future Video
 * Damage Effects such as burning, freezing, explosions, etc... - Coming with a Future Video
 * And even more! - Coming with a Future Video
@@ -70,6 +70,8 @@ If you'd prefer to become a [YouTube Member](https://www.youtube.com/channel/UCn
 * AudemKay
 * EJ
 * Claduiu Barsan-Pipu
+* Sschmeil22
+* Ben
 * YOUR NAME HERE!
 
 ## Other Projects

@@ -1,4 +1,5 @@
 using LlamAcademy.ImpactSystem;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -6,7 +7,7 @@ using UnityEngine.Pool;
 namespace LlamAcademy.Guns
 {
     [CreateAssetMenu(fileName = "Gun", menuName = "Guns/Gun", order = 0)]
-    public class GunScriptableObject : ScriptableObject
+    public class GunScriptableObject : ScriptableObject, ICloneable
     {
         public ImpactType ImpactType;
         public GunType Type;
@@ -45,13 +46,6 @@ namespace LlamAcademy.Guns
         public void Spawn(Transform Parent, MonoBehaviour ActiveMonoBehaviour, Camera Camera = null)
         {
             this.ActiveMonoBehaviour = ActiveMonoBehaviour;
-
-            // in editor these will not be properly reset, in build it's fine
-            LastShootTime = 0;
-            StopShootingTime = 0;
-            InitialClickTime = 0;
-            AmmoConfig.CurrentClipAmmo = AmmoConfig.ClipSize;
-            AmmoConfig.CurrentAmmo = AmmoConfig.MaxAmmo;
 
             TrailPool = new ObjectPool<TrailRenderer>(CreateTrail);
             if (!ShootConfig.IsHitscan)
@@ -203,7 +197,7 @@ namespace LlamAcademy.Guns
             // We have to ensure if shooting from the camera, but shooting real proejctiles, that we aim the gun at the hit point
             // of the raycast from the camera. Otherwise the aim is off.
             // When shooting from the gun, there's no need to do any of this because the recoil is already handled in TryToShoot
-            if (ShootConfig.ShootType == ShootType.FromCamera 
+            if (ShootConfig.ShootType == ShootType.FromCamera
                 && Physics.Raycast(
                     GetRaycastOrigin(),
                     ShootDirection,
@@ -442,6 +436,27 @@ namespace LlamAcademy.Guns
         private Bullet CreateBullet()
         {
             return Instantiate(ShootConfig.BulletPrefab);
+        }
+
+        public object Clone()
+        {
+            GunScriptableObject config = CreateInstance<GunScriptableObject>();
+
+            config.ImpactType = ImpactType;
+            config.Type = Type;
+            config.Name = Name;
+            config.name = name;
+            config.DamageConfig = DamageConfig.Clone() as DamageConfigScriptableObject;
+            config.ShootConfig = ShootConfig.Clone() as ShootConfigScriptableObject;
+            config.AmmoConfig = AmmoConfig.Clone() as AmmoConfigScriptableObject;
+            config.TrailConfig = TrailConfig.Clone() as TrailConfigScriptableObject;
+            config.AudioConfig = AudioConfig.Clone() as AudioConfigScriptableObject;
+
+            config.ModelPrefab = ModelPrefab;
+            config.SpawnPoint = SpawnPoint;
+            config.SpawnRotation = SpawnRotation;
+
+            return config;
         }
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 namespace LlamAcademy.Guns
 {
     [CreateAssetMenu(fileName = "Ammo Config", menuName = "Guns/Ammo Config", order = 3)]
-    public class AmmoConfigScriptableObject : ScriptableObject
+    public class AmmoConfigScriptableObject : ScriptableObject, System.ICloneable
     {
         public int MaxAmmo = 120;
         public int ClipSize = 30;
@@ -38,6 +38,15 @@ namespace LlamAcademy.Guns
         public bool CanReload()
         {
             return CurrentClipAmmo < ClipSize && CurrentAmmo > 0;
+        }
+
+        public object Clone()
+        {
+            AmmoConfigScriptableObject config = CreateInstance<AmmoConfigScriptableObject>();
+
+            Utilities.CopyValues(this, config);
+
+            return config;
         }
     }
 }
