@@ -3962,7 +3962,6 @@ MonoBehaviour:
   Guns:
   - {fileID: 11400000, guid: c2f1d42b3210893408d68408ee3faee5, type: 2}
   - {fileID: 11400000, guid: cdf736977e88a034280829a6d0d61d7e, type: 2}
-  - {fileID: 0}
   InverseKinematics: {fileID: 624691207}
   ActiveGun: {fileID: 0}
 --- !u!4 &624691198 stripped
@@ -4012,6 +4011,19 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 624691194}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &624691214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624691196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77ce24d7e033cc4a8e7a526d4cfb163, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GunSelector: {fileID: 624691197}
 --- !u!1001 &709484323
 PrefabInstance:
   m_ObjectHideFlags: 0

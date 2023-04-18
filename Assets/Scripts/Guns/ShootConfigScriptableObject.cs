@@ -4,7 +4,7 @@ using System.Linq;
 namespace LlamAcademy.Guns
 {
     [CreateAssetMenu(fileName = "Shoot Config", menuName = "Guns/Shoot Config", order = 2)]
-    public class ShootConfigScriptableObject : ScriptableObject
+    public class ShootConfigScriptableObject : ScriptableObject, System.ICloneable
     {
         public bool IsHitscan = true;
         public Bullet BulletPrefab;
@@ -113,6 +113,15 @@ namespace LlamAcademy.Guns
             Vector2 direction = (targetPosition - new Vector2(halfSize.x, halfSize.y)) / halfSize.x;
 
             return direction;
+        }
+
+        public object Clone()
+        {
+            ShootConfigScriptableObject config = CreateInstance<ShootConfigScriptableObject>();
+
+            Utilities.CopyValues(this, config);
+
+            return config;
         }
     }
 }
