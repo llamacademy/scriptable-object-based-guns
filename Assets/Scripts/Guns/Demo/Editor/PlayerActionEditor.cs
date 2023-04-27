@@ -1,3 +1,4 @@
+using LlamAcademy.Guns.ImpactEffects;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
@@ -53,6 +54,46 @@ namespace LlamAcademy.Guns.Demo.Editors
                     {
                         Handles.color = Color.yellow;
                         Handles.DrawLine(shootSystem.transform.position, hit.point);
+                    }
+
+                    foreach (ICollisionHandler handler in gun.BulletImpactEffects)
+                    {
+                        if (handler is AbstractAreaOfEffect)
+                        {
+                            AbstractAreaOfEffect explosionEffect = (AbstractAreaOfEffect)handler;
+
+                            Collider[] hits = new Collider[explosionEffect.MaxEnemiesAffected];
+                            int numberOfEnemiesExploded = Physics.OverlapSphereNonAlloc(hit.point, explosionEffect.Radius, hits, gun.ShootConfig.HitMask);
+
+                            if (numberOfEnemiesExploded > 1)
+                            {
+                                Handles.color = Color.green;
+                            }
+                            else
+                            {
+                                Handles.color = Color.red;
+                            }
+
+                            Handles.SphereHandleCap(EditorGUIUtility.GetControlID(FocusType.Passive), hit.point, Quaternion.identity, explosionEffect.Radius, EventType.Repaint);
+
+                            for (int i = 0; i < numberOfEnemiesExploded; i++)
+                            {
+                                if (hits[i].TryGetComponent(out IDamageable damageable))
+                                {
+                                    float distance = Vector3.Distance(hit.point, hits[i].ClosestPoint(hit.point));
+
+                                    Handles.Label(hits[i].transform.position - Vector3.up,
+                                        $"{Mathf.CeilToInt(explosionEffect.BaseDamage * explosionEffect.DamageFalloff.Evaluate(distance / explosionEffect.Radius))}", 
+                                        new GUIStyle()
+                                        {
+                                            normal = new GUIStyleState()
+                                            {
+                                                textColor = Color.red
+                                            }
+                                        });
+                                }
+                            }
+                        }
                     }
                 }
                 else

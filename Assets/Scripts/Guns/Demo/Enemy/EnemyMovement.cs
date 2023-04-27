@@ -6,7 +6,7 @@ namespace LlamAcademy.Guns.Demo.Enemy
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(NavMeshAgent))]
-    public class EnemyMovement : MonoBehaviour
+    public class EnemyMovement : MonoBehaviour, ISlowable
     {
         private Animator Animator;
         [SerializeField]
@@ -14,6 +14,8 @@ namespace LlamAcademy.Guns.Demo.Enemy
         private LookAtIK LookAt;
         private NavMeshAgent Agent;
 
+        private Coroutine SlowCoroutine;
+        private float BaseSpeed;
         private const string IsWalking = "IsWalking";
 
         private static NavMeshTriangulation Triangulation;
@@ -32,6 +34,7 @@ namespace LlamAcademy.Guns.Demo.Enemy
         private void Start()
         {
             StartCoroutine(Roam());
+            BaseSpeed = Agent.speed;
         }
 
         private void Update()
@@ -67,6 +70,30 @@ namespace LlamAcademy.Guns.Demo.Enemy
             StopAllCoroutines();
             Agent.isStopped = true;
             Agent.enabled = false;
+        }
+
+        public void Slow(AnimationCurve SlowCurve)
+        {
+            if (SlowCoroutine != null)
+            {
+                StopCoroutine(SlowCoroutine);
+            }
+
+            SlowCoroutine = StartCoroutine(SlowDown(SlowCurve));
+        }
+
+        private IEnumerator SlowDown(AnimationCurve SlowCurve)
+        {
+            float time = 0;
+
+            while (time < SlowCurve.keys[^1].time)
+            {
+                Agent.speed = BaseSpeed * SlowCurve.Evaluate(time);
+                time += Time.deltaTime;
+                yield return null;
+            }
+
+            Agent.speed = BaseSpeed;
         }
     }
 }
