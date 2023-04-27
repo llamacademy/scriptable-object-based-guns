@@ -1,4 +1,6 @@
+using LlamAcademy.Guns.ImpactEffects;
 using LlamAcademy.Guns.Modifiers;
+using LlamAcademy.ImpactSystem;
 using UnityEngine;
 
 namespace LlamAcademy.Guns.Demo
@@ -6,23 +8,52 @@ namespace LlamAcademy.Guns.Demo
     public class GunModifierApplier : MonoBehaviour
     {
         [SerializeField]
+        private ImpactType ImpactType;
+        [SerializeField]
         private PlayerGunSelector GunSelector;
 
         private void Start()
         {
-            DamageModifier damageModifier = new()
+            new ImpactTypeModifier()
             {
-                Amount = 1.5f,
-                AttributeName = "DamageConfig/DamageCurve"
-            };
-            damageModifier.Apply(GunSelector.ActiveGun);
+                Amount = ImpactType
+            }.Apply(GunSelector.ActiveGun);
 
-            Vector3Modifier spreadModifier = new()
+            GunSelector.ActiveGun.BulletImpactEffects = new ICollisionHandler[]
             {
-                Amount = new Vector3(1.2f, 1.2f, 1.2f),
-                AttributeName = "ShootConfig/Spread"
+                new Frost(
+                    1,
+                    new AnimationCurve() {
+                        keys = new Keyframe[] {
+                            new Keyframe(0, 1),
+                            new Keyframe(1, 0.25f)
+                        }
+                    },
+                    GunSelector.ActiveGun.DamageConfig.DamageCurve.Evaluate(0),
+                    10,
+                     new AnimationCurve() {
+                        keys = new Keyframe[] {
+                            new Keyframe(0, 0.5f),
+                            new Keyframe(1.75f, 0.5f),
+                            new Keyframe(2, 1),
+                        }
+                    }
+                )
             };
-            spreadModifier.Apply(GunSelector.ActiveGun);
+            //GunSelector.ActiveGun.BulletImpactEffects = new ICollisionHandler[]
+            //{
+            //    new Explode(
+            //        1,
+            //        new AnimationCurve() {
+            //            keys = new Keyframe[] {
+            //                new Keyframe(0, 1),
+            //                new Keyframe(1, 0.25f)
+            //            }
+            //        },
+            //        GunSelector.ActiveGun.DamageConfig.DamageCurve.Evaluate(0),
+            //        10
+            //    )
+            //};
         }
     }
 }
