@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scripts/Guns/Demo/UI/Root%20Styles.uss?fileID=7433441132597879392&amp;guid=4a3f9a3db294f9c4a8a087456c7a0095&amp;type=3#Root Styles" />
+    <ui:VisualElement class="flex-row flex-grow">
+        <ui:VisualElement name="icon" />
+        <ui:VisualElement style="flex-grow: 1;">
+            <ui:Label text="Slot Name" display-tooltip-when-elided="true" name="name" class="name hr" />
+            <ui:Label text="Slot Description. This is probably some longer text that should wrap" display-tooltip-when-elided="true" name="description" class="description" />
+        </ui:VisualElement>
+        <ui:VisualElement name="icon" class="chevron-right" />
+    </ui:VisualElement>
+</ui:UXML>

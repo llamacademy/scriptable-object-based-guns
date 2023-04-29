@@ -14,6 +14,7 @@ namespace LlamAcademy.Guns
         public BulletSpreadType SpreadType = BulletSpreadType.Simple;
         public float RecoilRecoverySpeed = 1f;
         public float MaxSpreadTime = 1f;
+        public float BulletWeight = 0.1f;
 
         public ShootType ShootType = ShootType.FromGun;
 

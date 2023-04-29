@@ -23,7 +23,7 @@ namespace LlamAcademy.Guns
         public TrailConfigScriptableObject TrailConfig;
         public AudioConfigScriptableObject AudioConfig;
 
-        public ICollisionHandler[] BulletImpactEffects;
+        public ICollisionHandler[] BulletImpactEffects = new ICollisionHandler[0];
 
         private MonoBehaviour ActiveMonoBehaviour;
         private AudioSource ShootingAudioSource;
@@ -65,6 +65,23 @@ namespace LlamAcademy.Guns
 
             ShootingAudioSource = Model.GetComponent<AudioSource>();
             ShootSystem = Model.GetComponentInChildren<ParticleSystem>();
+        }
+
+        /// <summary>
+        /// Despawns the active gameobjects and cleans up pools.
+        /// </summary>
+        public void Despawn()
+        {
+            // We do a bunch of other stuff on the same frame, so we really want it to be immediately destroyed, not at Unity's convenience.
+            DestroyImmediate(Model);
+            TrailPool.Clear();
+            if (BulletPool != null)
+            {
+                BulletPool.Clear();
+            }
+
+            ShootingAudioSource = null;
+            ShootSystem = null;
         }
 
         /// <summary>
@@ -443,7 +460,11 @@ namespace LlamAcademy.Guns
         /// <returns>A live Bullet GameObject</returns>
         private Bullet CreateBullet()
         {
-            return Instantiate(ShootConfig.BulletPrefab);
+            Bullet bullet = Instantiate(ShootConfig.BulletPrefab);
+            Rigidbody rigidbody = bullet.GetComponent<Rigidbody>();
+            rigidbody.mass = ShootConfig.BulletWeight;
+
+            return bullet;
         }
 
         public object Clone()

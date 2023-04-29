@@ -5,6 +5,9 @@ namespace LlamAcademy.Guns.Modifiers
 {
     public class Vector3Modifier : AbstractValueModifier<Vector3>
     {
+        public Vector3Modifier(): base() { }
+        public Vector3Modifier(Vector3 Amount, string AttributeName): base(Amount, AttributeName) { }
+
         public override void Apply(GunScriptableObject Gun)
         {
             try
