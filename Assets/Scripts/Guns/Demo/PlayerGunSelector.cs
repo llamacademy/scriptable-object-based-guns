@@ -52,7 +52,7 @@ namespace LlamAcademy.Guns.Demo
         {
             ActiveGun.Despawn();
             Destroy(ActiveGun);
-            
+
             Awake();
 
             foreach (IModifier modifier in Modifiers)

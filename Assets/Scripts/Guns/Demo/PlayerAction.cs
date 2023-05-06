@@ -1,4 +1,3 @@
-using LlamAcademy.Guns.Demo.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;

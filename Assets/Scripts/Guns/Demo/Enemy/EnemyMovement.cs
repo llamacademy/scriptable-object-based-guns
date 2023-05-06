@@ -36,6 +36,7 @@ namespace LlamAcademy.Guns.Demo.Enemy
         private void Start()
         {
             StartCoroutine(Roam());
+            BaseSpeed = Agent.speed;
         }
 
         private void Update()

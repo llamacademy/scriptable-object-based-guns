@@ -29,7 +29,7 @@ namespace LlamAcademy.Guns.Demo
                             new Keyframe(1, 0.25f)
                         }
                     },
-                    GunSelector.ActiveGun.DamageConfig.DamageCurve.Evaluate(0),
+                    5,
                     10,
                      new AnimationCurve() {
                         keys = new Keyframe[] {
@@ -50,7 +50,7 @@ namespace LlamAcademy.Guns.Demo
             //                new Keyframe(1, 0.25f)
             //            }
             //        },
-            //        GunSelector.ActiveGun.DamageConfig.DamageCurve.Evaluate(0),
+            //        10,
             //        10
             //    )
             //};

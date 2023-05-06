@@ -65,8 +65,8 @@ namespace StarterAssets
         public void JumpInput(bool newJumpState)
         {
             if (enabled)
-            {
-                jump = newJumpState;
+            { 
+                jump = newJumpState; 
             }
         }
 
@@ -91,5 +91,4 @@ namespace StarterAssets
             Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
         }
     }
-
 }

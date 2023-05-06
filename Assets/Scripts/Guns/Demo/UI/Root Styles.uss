@@ -1,3 +1,4 @@
+
 .hidden {
     opacity: 0;
     transition: opacity 0.125s ease-in-out;
@@ -18,7 +19,7 @@
 }
 
 .center-text {
-    -unity-text-align: center;
+    -unity-text-align: middle-center;
 }
 
 #icon {
@@ -56,7 +57,7 @@
     background-image: url('project://database/Assets/Textures/long%20barrel.png?fileID=2800000&guid=f26d75f957b0aca49b7a1ab3da1588ce&type=3#long barrel');
 }
 
-.standard {
+.standard, .ban {
     background-image: url('project://database/Assets/Textures/standard.png?fileID=2800000&guid=531aadb73e7d2b843a84643950fe84b2&type=3#standard');
 }
 
@@ -81,7 +82,8 @@
 
 .description {
     font-size: 16px;
-    white-space: wrap;
+    white-space: normal;
+
 }
 
 .unity-label {
@@ -104,7 +106,7 @@
     display: none;
 }
 
-.fade-in-left {
+.fade-in-right {
     translate: 0% 0%;
     opacity: 1;
     transition: translate 0.25s ease-in-out, opacity 0.25s;
@@ -144,7 +146,7 @@
     max-height: 0%;
     max-width: 3px;
     justify-content: center;
-    align-self: middle;
+    align-self: stretch;
     transition: max-height 125ms ease-in-out;
 }
 
@@ -152,7 +154,7 @@
     max-height: 100%;
     max-width: 3px;
     justify-content: center;
-    align-self: middle;
+    align-self: stretch;
     transition: max-height 125ms ease-in-out;
 }
 
