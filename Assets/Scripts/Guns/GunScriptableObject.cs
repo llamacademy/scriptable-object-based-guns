@@ -1,3 +1,4 @@
+using LlamAcademy.Guns.ImpactEffects;
 using LlamAcademy.ImpactSystem;
 using System;
 using System.Collections;
@@ -21,6 +22,8 @@ namespace LlamAcademy.Guns
         public AmmoConfigScriptableObject AmmoConfig;
         public TrailConfigScriptableObject TrailConfig;
         public AudioConfigScriptableObject AudioConfig;
+
+        public ICollisionHandler[] BulletImpactEffects = new ICollisionHandler[0];
 
         private MonoBehaviour ActiveMonoBehaviour;
         private AudioSource ShootingAudioSource;
@@ -406,6 +409,11 @@ namespace LlamAcademy.Guns
             if (HitCollider.TryGetComponent(out IDamageable damageable))
             {
                 damageable.TakeDamage(DamageConfig.GetDamage(DistanceTraveled));
+            }
+
+            foreach(ICollisionHandler handler in BulletImpactEffects)
+            {
+                handler.HandleImpact(HitCollider, HitLocation, HitNormal, this);
             }
         }
 

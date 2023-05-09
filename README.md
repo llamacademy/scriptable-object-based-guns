@@ -13,7 +13,7 @@ In this tutorial repository and accompanying [video series](https://www.youtube.
 * Accurate Aiming / Crosshairs - [Implemented in Part 7](https://www.youtube.com/watch?v=x8ECpNWMmag&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=7&pp=sAQB)
 * Attachments - [Modifier System in Part 8](https://www.youtube.com/watch?v=RbIk6VnwHnI&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=8) - More Coming with a Future Video
 * Animated Models - Coming with a Future Video
-* Damage Effects such as burning, freezing, explosions, etc... - Coming with a Future Video
+* Damage Effects such as burning, freezing, explosions, etc... - [Implemented in Part 9](https://youtu.be/Y-Qr6GPN2v0) with `ICollisionHandler`
 * And even more! - Coming with a Future Video
 
 Impact Effects _are not_ in scope of this tutorial series. They are handled using the [Surface Manager](https://github.com/llamacademy/surface-manager) (tutorial [video here](https://youtu.be/kT2ZxjMuT_4)).

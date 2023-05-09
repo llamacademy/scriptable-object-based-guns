@@ -9,10 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 122ab2a19482d694cb49c1e5e7117bfc, type: 3}
-  m_Name: Spawn Explosion Impact Effect
+  m_Script: {fileID: 11500000, guid: 49ee2a195811aaf4aa68582d53d6ffe9, type: 3}
+  m_Name: Frost Bullet Impact
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
-  Probability: 1
-  RandomizeRotation: 0
-  RandomizedRotationMultiplier: {x: 0, y: 0, z: 0}
