@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8911373888f1199468841498cf6d4f5f, type: 3}
-  m_Name: Eyeball Bullet Impact Effect
+  m_Name: Explosive Bullet Surface Effect
   m_EditorClassIdentifier: 
   SpawnObjectEffects:
-  - {fileID: 11400000, guid: b1f2641791b71314db6b08c2df545435, type: 2}
+  - {fileID: 11400000, guid: 0e1929b6269ed4347aee1252399494c3, type: 2}
   PlayAudioEffects:
   - {fileID: 11400000, guid: 773014ea7be38ba49ae270f5055f6cb0, type: 2}

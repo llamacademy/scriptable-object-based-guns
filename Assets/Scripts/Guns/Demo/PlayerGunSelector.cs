@@ -1,3 +1,4 @@
+using LlamAcademy.Guns.Modifiers;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -35,11 +36,29 @@ namespace LlamAcademy.Guns.Demo
             ActiveGun.Spawn(GunParent, this, Camera);
 
             // some magic for IK
+            DoIKMagic();
+        }
+
+        private void DoIKMagic()
+        {
             Transform[] allChildren = GunParent.GetComponentsInChildren<Transform>();
             InverseKinematics.LeftElbowIKTarget = allChildren.FirstOrDefault(child => child.name == "LeftElbow");
             InverseKinematics.RightElbowIKTarget = allChildren.FirstOrDefault(child => child.name == "RightElbow");
             InverseKinematics.LeftHandIKTarget = allChildren.FirstOrDefault(child => child.name == "LeftHand");
             InverseKinematics.RightHandIKTarget = allChildren.FirstOrDefault(child => child.name == "RightHand");
+        }
+
+        public void ApplyModifiers(IModifier[] Modifiers)
+        {
+            ActiveGun.Despawn();
+            Destroy(ActiveGun);
+
+            Awake();
+
+            foreach (IModifier modifier in Modifiers)
+            {
+                modifier.Apply(ActiveGun);    
+            }
         }
     }
 }

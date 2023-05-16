@@ -29,6 +29,8 @@ namespace LlamAcademy.Guns.Demo.Enemy
             {
                 Triangulation = NavMesh.CalculateTriangulation();
             }
+            
+            BaseSpeed = Agent.speed;
         }
 
         private void Start()
@@ -78,7 +80,6 @@ namespace LlamAcademy.Guns.Demo.Enemy
             {
                 StopCoroutine(SlowCoroutine);
             }
-
             SlowCoroutine = StartCoroutine(SlowDown(SlowCurve));
         }
 

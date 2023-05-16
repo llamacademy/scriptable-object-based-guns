@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8911373888f1199468841498cf6d4f5f, type: 3}
+  m_Name: Frost Bullet Impact Surface Effect
+  m_EditorClassIdentifier: 
+  SpawnObjectEffects:
+  - {fileID: 11400000, guid: 9a975fc9e05fba74dba60f9af3cc1de9, type: 2}
+  PlayAudioEffects:
+  - {fileID: 11400000, guid: 3648a642fc1195f46aa4b7a700d2c9d8, type: 2}

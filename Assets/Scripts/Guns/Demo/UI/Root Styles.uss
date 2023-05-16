@@ -1,0 +1,178 @@
+
+.hidden {
+    opacity: 0;
+    transition: opacity 0.125s ease-in-out;
+}
+
+.visible {
+    opacity: 1;
+    transition: opacity 0.125s ease-in-out;
+}
+
+.flex-grow {
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.center-text {
+    -unity-text-align: middle-center;
+}
+
+#icon {
+    width: 150px;
+    height: 150px;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+.m4a1 {
+    background-image: url('project://database/Assets/Textures/M4A1.png?fileID=21300000&guid=5e0245b99de779b4cae9cd15e7590a2a&type=3#M4A1');
+}
+
+.glock {
+    background-image: url('project://database/Assets/Textures/Glock.png?fileID=21300000&guid=ea83b90d9f541b6498c8480cf28490bb&type=3#Glock');
+}
+
+.frost-rounds {
+    background-image: url('project://database/Assets/Textures/frost%20rounds.png?fileID=2800000&guid=490cb083e291cda44abf2b4302a9d63c&type=3#frost rounds');
+}
+
+.explosive-rounds {
+    background-image: url('project://database/Assets/Textures/explosive%20rounds.png?fileID=2800000&guid=887a9a63dbf7b314da772c55dfeae3c8&type=3#explosive rounds');
+}
+
+.potato-grip {
+    background-image: url('project://database/Assets/Textures/potato%20grip.png?fileID=2800000&guid=a651baa117c61414d9b1d2d65cf0f3f9&type=3#potato grip');
+}
+
+.enhanced-grips {
+    background-image: url('project://database/Assets/Textures/enhanced%20grips.png?fileID=2800000&guid=e0725aadf7bc01f46befe1469f105fc4&type=3#enhanced grips');
+}
+
+.long-barrel {
+    background-image: url('project://database/Assets/Textures/long%20barrel.png?fileID=2800000&guid=f26d75f957b0aca49b7a1ab3da1588ce&type=3#long barrel');
+}
+
+.standard, .ban {
+    background-image: url('project://database/Assets/Textures/standard.png?fileID=2800000&guid=531aadb73e7d2b843a84643950fe84b2&type=3#standard');
+}
+
+#icon.chevron-right {
+    transition: -unity-background-image-tint-color 0.125s;
+    background-image: url('project://database/Assets/Textures/chevron-circle-right.png?fileID=2800000&guid=a04baafa60b1fde4d8d713ce867dd133&type=3#chevron-circle-right');
+    width: 75px;
+    height: 75px;
+    align-self: center;
+    display: flex;
+    -unity-background-image-tint-color: white;
+}
+
+#icon.chevron-right:hover {
+    -unity-background-image-tint-color: grey;
+    transition: -unity-background-image-tint-color 0.125s;
+}
+
+.name {
+    font-size: 24px;
+}
+
+.description {
+    font-size: 16px;
+    white-space: normal;
+
+}
+
+.unity-label {
+    color: white;
+}
+
+.attachment-slot {
+    flex-grow: 1;
+    flex-shrink: 0;
+    width: 450px;
+    height: 150px;
+}
+
+.hr {
+    border-bottom-color: white;
+    border-bottom-width: 2px;
+}
+
+.display-none {
+    display: none;
+}
+
+.fade-in-right {
+    translate: 0% 0%;
+    opacity: 1;
+    transition: translate 0.25s ease-in-out, opacity 0.25s;
+}
+
+.fade-out-left {
+    translate: -100% 0%;
+    opacity: 0;
+    transition: translate 0.25s ease-in-out 0.25s, opacity 0.25s linear 0.25s;
+}
+
+.deselected {
+    border-width: 3px;
+    border-color: transparent;
+    transition: border-color 0.125s ease-in;
+}
+
+.selected {
+    border-color: green;
+    border-width: 3px;
+    transition: border-color 0.125s ease-out;
+}
+
+.fade-out-up {
+    opacity: 0;
+    translate: 0px -100px;
+    transition: opacity 125ms ease-in-out, translate 125ms ease-in-out;
+}
+
+.fade-in-down {
+    opacity: 1;
+    translate: 0px 0px;
+    transition: opacity 125ms ease-in-out, translate 125ms ease-in-out;
+}
+
+.border-left-animate-height-0 {
+    max-height: 0%;
+    max-width: 3px;
+    justify-content: center;
+    align-self: stretch;
+    transition: max-height 125ms ease-in-out;
+}
+
+.border-left-animate-height-100 {
+    max-height: 100%;
+    max-width: 3px;
+    justify-content: center;
+    align-self: stretch;
+    transition: max-height 125ms ease-in-out;
+}
+
+.delay-0ms {
+    transition-delay: 0ms;
+}
+.delay-50ms {
+    transition-delay: 50ms;
+}
+.delay-100ms {
+    transition-delay: 100ms;
+}
+.delay-150ms {
+    transition-delay: 150ms;
+}
+.delay-200ms {
+    transition-delay: 200ms;
+}
+.delay-250ms {
+    transition-delay: 250ms;
+}

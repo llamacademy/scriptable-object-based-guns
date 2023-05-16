@@ -87,6 +87,8 @@ namespace LlamAcademy.Guns.Editors
             bulletPrefab.BindProperty(shootConfigSO.FindProperty("BulletPrefab"));
             FloatField bulletSpawnForceField = new("Bullet Force");
             bulletSpawnForceField.BindProperty(shootConfigSO.FindProperty("BulletSpawnForce"));
+            FloatField bulletWeightField = new("Bullet Mass");
+            bulletWeightField.BindProperty(shootConfigSO.FindProperty("BulletWeight"));
 
             SerializedProperty isHitscan = shootConfigSO.FindProperty("IsHitscan");
             Toggle isHitscanToggle = new("Is Hitscan Gun");
@@ -96,16 +98,17 @@ namespace LlamAcademy.Guns.Editors
                 {
                     bulletPrefab.AddToClassList("hidden");
                     bulletSpawnForceField.AddToClassList("hidden");
+                    bulletWeightField.AddToClassList("hidden");
                 }
                 else
                 {
                     bulletPrefab.RemoveFromClassList("hidden");
                     bulletSpawnForceField.RemoveFromClassList("hidden");
+                    bulletWeightField.RemoveFromClassList("hidden");
                 }
             });
             isHitscanToggle.BindProperty(isHitscan);
             shootConfigBox.Add(isHitscanToggle);
-
             
             if (isHitscan.boolValue)
             {

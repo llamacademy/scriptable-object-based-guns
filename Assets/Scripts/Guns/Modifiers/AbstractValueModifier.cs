@@ -9,6 +9,13 @@ namespace LlamAcademy.Guns.Modifiers
     /// <typeparam name="T">Type of the field to be modified</typeparam>
     public abstract class AbstractValueModifier<T> : IModifier
     {
+        public AbstractValueModifier() { }
+        public AbstractValueModifier(T Amount, string AttributeName)
+        {
+            this.AttributeName= AttributeName;
+            this.Amount = Amount;
+        }
+
         /// <summary>
         /// AttributeName can be a discrete field on the Gun, or provided as a path to a property.
         /// For example, to modifiy the damage curve, you can set the value to "DamageConfig/DamageCurve"

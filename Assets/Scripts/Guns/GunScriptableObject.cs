@@ -68,6 +68,23 @@ namespace LlamAcademy.Guns
         }
 
         /// <summary>
+        /// Despawns the active gameobjects and cleans up pools.
+        /// </summary>
+        public void Despawn()
+        {
+            // We do a bunch of other stuff on the same frame, so we really want it to be immediately destroyed, not at Unity's convenience.
+            DestroyImmediate(Model);
+            TrailPool.Clear();
+            if (BulletPool != null)
+            {
+                BulletPool.Clear();
+            }
+
+            ShootingAudioSource = null;
+            ShootSystem = null;
+        }
+
+        /// <summary>
         /// Used to override the Camera provided in <see cref="Spawn(Transform, MonoBehaviour, Camera)"/>.
         /// Cameras are only required if 
         /// </summary>
@@ -411,9 +428,9 @@ namespace LlamAcademy.Guns
                 damageable.TakeDamage(DamageConfig.GetDamage(DistanceTraveled));
             }
 
-            foreach(ICollisionHandler handler in BulletImpactEffects)
+            foreach (ICollisionHandler collisionHandler in BulletImpactEffects)
             {
-                handler.HandleImpact(HitCollider, HitLocation, HitNormal, this);
+                collisionHandler.HandleImpact(HitCollider, HitLocation, HitNormal, this);
             }
         }
 
@@ -443,7 +460,11 @@ namespace LlamAcademy.Guns
         /// <returns>A live Bullet GameObject</returns>
         private Bullet CreateBullet()
         {
-            return Instantiate(ShootConfig.BulletPrefab);
+            Bullet bullet = Instantiate(ShootConfig.BulletPrefab);
+            Rigidbody rigidbody = bullet.GetComponent<Rigidbody>();
+            rigidbody.mass = ShootConfig.BulletWeight;
+
+            return bullet;
         }
 
         public object Clone()

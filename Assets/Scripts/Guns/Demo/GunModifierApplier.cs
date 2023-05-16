@@ -8,7 +8,7 @@ namespace LlamAcademy.Guns.Demo
     public class GunModifierApplier : MonoBehaviour
     {
         [SerializeField]
-        private ImpactType ImpactTypeOverride;
+        private ImpactType ImpactType;
         [SerializeField]
         private PlayerGunSelector GunSelector;
 
@@ -16,21 +16,28 @@ namespace LlamAcademy.Guns.Demo
         {
             new ImpactTypeModifier()
             {
-                Amount = ImpactTypeOverride
+                Amount = ImpactType
             }.Apply(GunSelector.ActiveGun);
 
             GunSelector.ActiveGun.BulletImpactEffects = new ICollisionHandler[]
             {
                 new Frost(
-                    1.5f,
-                    new AnimationCurve(new Keyframe[] { new Keyframe(0, 1), new Keyframe(1, 0.25f)}),
+                    1,
+                    new AnimationCurve() {
+                        keys = new Keyframe[] {
+                            new Keyframe(0, 1),
+                            new Keyframe(1, 0.25f)
+                        }
+                    },
+                    5,
                     10,
-                    10,
-                    new AnimationCurve(new Keyframe[] { 
-                        new Keyframe(0, 0.25f), 
-                        new Keyframe(1.75f, 0.25f), 
-                        new Keyframe(2, 1)
-                    })
+                     new AnimationCurve() {
+                        keys = new Keyframe[] {
+                            new Keyframe(0, 0.5f),
+                            new Keyframe(1.75f, 0.5f),
+                            new Keyframe(2, 1),
+                        }
+                    }
                 )
             };
             //GunSelector.ActiveGun.BulletImpactEffects = new ICollisionHandler[]
@@ -43,7 +50,7 @@ namespace LlamAcademy.Guns.Demo
             //                new Keyframe(1, 0.25f)
             //            }
             //        },
-            //        GunSelector.ActiveGun.DamageConfig.DamageCurve.Evaluate(0),
+            //        10,
             //        10
             //    )
             //};

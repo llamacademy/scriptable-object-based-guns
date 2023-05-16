@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ImpactTypeEffects:
   - ImpactType: {fileID: 11400000, guid: c50f6f80c300615438adeba37e2ea508, type: 2}
-    SurfaceEffect: {fileID: 11400000, guid: 5c66111fc201cd44eaba2ee952c1dc3c, type: 2}
+    SurfaceEffect: {fileID: 11400000, guid: d1512234c5d2dda448f72beceb6160eb, type: 2}
   - ImpactType: {fileID: 11400000, guid: 1e187fe0efa11b34fb0a1cd481581448, type: 2}
     SurfaceEffect: {fileID: 11400000, guid: 5f0057cedbfd3c343acf8538726b27e4, type: 2}
   - ImpactType: {fileID: 11400000, guid: 7be9794bb9764334585f1fe26586994e, type: 2}
-    SurfaceEffect: {fileID: 11400000, guid: e008b8dba7bd088408ff07853ea86a5a, type: 2}
+    SurfaceEffect: {fileID: 11400000, guid: a13762a64b6d9b040a0005522f21a409, type: 2}

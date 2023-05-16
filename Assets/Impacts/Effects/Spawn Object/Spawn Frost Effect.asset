@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 122ab2a19482d694cb49c1e5e7117bfc, type: 3}
-  m_Name: Spawn Eyeball Blood Effect
+  m_Name: Spawn Frost Effect
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 6760855812522384163, guid: 973aea92cce1ded47960e9ca196880b9, type: 3}
+  Prefab: {fileID: 3587429740778318151, guid: 7cfc2c51a4fa9d14f8d6d7b09199aee9, type: 3}
   Probability: 1
   RandomizeRotation: 0
   RandomizedRotationMultiplier: {x: 0, y: 0, z: 0}

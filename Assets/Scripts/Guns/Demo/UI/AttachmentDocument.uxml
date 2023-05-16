@@ -1,0 +1,18 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scripts/Guns/Demo/UI/Root%20Styles.uss?fileID=7433441132597879392&amp;guid=4a3f9a3db294f9c4a8a087456c7a0095&amp;type=3#Root Styles" />
+    <ui:VisualElement name="root" class="flex-grow" style="align-items: center; justify-content: flex-start; background-color: rgb(85, 85, 85); padding-left: 15%; padding-right: 15%;">
+        <ui:Button text="X" display-tooltip-when-elided="true" style="position: absolute; font-size: 48px; right: 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 12px; padding-right: 12px;" />
+        <ui:Label text="Customize Gun" display-tooltip-when-elided="true" style="font-size: 48px; flex-grow: 1; -unity-text-align: lower-left;" />
+        <ui:VisualElement class="flex-row" style="align-items: center; justify-content: center; flex-grow: 10;">
+            <ui:VisualElement name="icon" class="m4a1" style="align-items: center;">
+                <ui:Label text="M4A1" display-tooltip-when-elided="true" name="gunName" />
+            </ui:VisualElement>
+            <ui:ScrollView name="slot-scrollview" vertical-scroller-visibility="Hidden" horizontal-scroller-visibility="Hidden" class="fade-in-left" />
+            <ui:VisualElement name="option-container" picking-mode="Ignore" class="flex-row flex-grow fade-out-left" style="margin-left: 16px; padding-left: 8px;">
+                <ui:VisualElement name="border-left" class="border-left-animate-height-0" style="background-color: rgb(255, 255, 255); width: 3px; margin-left: 12px; margin-right: 12px;" />
+                <ui:VisualElement name="icon" class="chevron-right" style="rotate: 180deg; justify-content: flex-start; align-items: flex-start;" />
+                <ui:ScrollView name="option-scrollview" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
