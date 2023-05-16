@@ -44,17 +44,15 @@ If you'd prefer to become a [YouTube Member](https://www.youtube.com/channel/UCn
 * YOUR NAME HERE!
 
 ### Awesome Supporter Tier
-* Gerald Anderson
 * AudemKay
 * Matt Parkin
 * Ivan
 * Reulan
 * Iffy Obelus
-* Fernando
+* Dwarf
 * YOUR NAME HERE!
 
 ### Supporters
-* Bastian
 * Trey Briggs
 * Matt Sponholz
 * Dr Bash
