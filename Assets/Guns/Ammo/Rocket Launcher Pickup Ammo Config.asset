@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 852ca40c648fa6d4d9d88abd8ef71f6d, type: 3}
-  m_Name: Glock Ammo Config
+  m_Name: Rocket Launcher Pickup Ammo Config
   m_EditorClassIdentifier: 
-  MaxAmmo: 120
-  ClipSize: 30
-  CurrentAmmo: 0
-  CurrentClipAmmo: 30
+  MaxAmmo: 10
+  ClipSize: 1
+  CurrentAmmo: 1
+  CurrentClipAmmo: 1

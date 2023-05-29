@@ -21,6 +21,7 @@ namespace LlamAcademy.Guns.Demo
         [Space]
         [Header("Runtime Filled")]
         public GunScriptableObject ActiveGun;
+        private GunScriptableObject ActiveBaseGun;
 
         private void Awake()
         {
@@ -32,7 +33,13 @@ namespace LlamAcademy.Guns.Demo
                 return;
             }
 
-            ActiveGun = gun.Clone() as GunScriptableObject;
+            ActiveBaseGun = gun;
+            SetupGun(ActiveBaseGun);
+        }
+
+        private void SetupGun(GunScriptableObject Gun)
+        {
+            ActiveGun = Gun.Clone() as GunScriptableObject;
             ActiveGun.Spawn(GunParent, this, Camera);
 
             // some magic for IK
@@ -48,12 +55,23 @@ namespace LlamAcademy.Guns.Demo
             InverseKinematics.RightHandIKTarget = allChildren.FirstOrDefault(child => child.name == "RightHand");
         }
 
-        public void ApplyModifiers(IModifier[] Modifiers)
+        public void DespawnActiveGun()
         {
             ActiveGun.Despawn();
             Destroy(ActiveGun);
+        }
 
-            Awake();
+        public void PickupGun(GunScriptableObject Gun)
+        {
+            DespawnActiveGun();
+            ActiveBaseGun = Gun;
+            SetupGun(ActiveBaseGun);
+        }
+
+        public void ApplyModifiers(IModifier[] Modifiers)
+        {
+            DespawnActiveGun();
+            SetupGun(ActiveBaseGun);
 
             foreach (IModifier modifier in Modifiers)
             {

@@ -14,6 +14,7 @@ In this tutorial repository and accompanying [video series](https://www.youtube.
 * Attachments - [Modifier System in Part 8](https://www.youtube.com/watch?v=RbIk6VnwHnI&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=8) + Attachments UI & Applying to a Gun in [Part 10](https://www.youtube.com/watch?v=8wBEb2l0vZQ&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=10)
 * Animated Models - Coming with a Future Video
 * Damage Effects such as burning, freezing, explosions, etc... - [Implemented in Part 9](https://www.youtube.com/watch?v=Y-Qr6GPN2v0&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=9) with `ICollisionHandler`
+* Gun & Ammo Pick-ups - [Implemented in Part 11](https://www.youtube.com/watch?v=Fpt9xA3Ftmo&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=11)
 * And even more! - Coming with a Future Video
 
 Impact Effects _are not_ in scope of this tutorial series. They are handled using the [Surface Manager](https://github.com/llamacademy/surface-manager) (tutorial [video here](https://youtu.be/kT2ZxjMuT_4)).
@@ -66,10 +67,10 @@ If you'd prefer to become a [YouTube Member](https://www.youtube.com/channel/UCn
 * Dom C
 * Andrew Allbright
 * AudemKay
-* EJ
 * Claduiu Barsan-Pipu
 * Sschmeil22
 * Ben
+* Xuul
 * YOUR NAME HERE!
 
 ## Other Projects
