@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e29a1cd59aa11e48b0094a4ed015a47, type: 3}
-  m_Name: Glock Shoot Config
+  m_Name: Rocket Launcher Shoot Config
   m_EditorClassIdentifier: 
-  IsHitscan: 1
-  BulletPrefab: {fileID: 0}
-  BulletSpawnForce: 100
+  IsHitscan: 0
+  BulletPrefab: {fileID: 7634089679691573872, guid: f81a434aa46ee704f9acc6eaea17cdc7,
+    type: 3}
+  BulletSpawnForce: 2000
   HitMask:
     serializedVersion: 2
     m_Bits: 385
@@ -22,8 +23,8 @@ MonoBehaviour:
   SpreadType: 1
   RecoilRecoverySpeed: 1
   MaxSpreadTime: 1
-  BulletWeight: 0.1
-  ShootType: 1
+  BulletWeight: 1
+  ShootType: 0
   Spread: {x: 0.1, y: 0.1, z: 0.1}
   SpreadMultiplier: 0.1
   SpreadTexture: {fileID: 0}

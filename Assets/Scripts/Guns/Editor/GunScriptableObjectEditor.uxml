@@ -5,6 +5,7 @@
     <ui:VisualElement class="panel">
         <ui:Label text="General Properties" display-tooltip-when-elided="true" class="header" />
         <uie:EnumField label="Gun Type" value="M4A1" binding-path="Type" type="LlamAcademy.Guns.GunType, LlamAcademy.Guns" />
+        <uie:ObjectField label="Impact Type" binding-path="ImpactType" type="LlamAcademy.ImpactSystem.ImpactType, LlamAcademy.ImpactSystem" />
         <ui:TextField picking-mode="Ignore" label="Name" value="M4A1" binding-path="Name" />
         <uie:ObjectField label="Model Prefab" binding-path="ModelPrefab" type="UnityEngine.GameObject, UnityEngine.CoreModule" />
         <uie:Vector3Field label="Spawn Point" binding-path="SpawnPoint" />

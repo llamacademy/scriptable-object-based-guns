@@ -40,6 +40,18 @@ namespace LlamAcademy.Guns
             return CurrentClipAmmo < ClipSize && CurrentAmmo > 0;
         }
 
+        public void AddAmmo(int Amount)
+        {
+            if (CurrentAmmo + Amount > MaxAmmo)
+            {
+                CurrentAmmo = MaxAmmo;
+            }
+            else
+            {
+                CurrentAmmo += Amount;
+            }
+        }
+
         public object Clone()
         {
             AmmoConfigScriptableObject config = CreateInstance<AmmoConfigScriptableObject>();

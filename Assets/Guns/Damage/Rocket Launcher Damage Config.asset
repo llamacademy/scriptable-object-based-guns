@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fcecef925d5ad584a952429f14d5f266, type: 3}
-  m_Name: Glock Damage Config
+  m_Name: Rocket Launcher Damage Config
   m_EditorClassIdentifier: 
   DamageCurve:
     m_Mode: 0
@@ -46,4 +46,4 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     m_ConstantMin: 0
-    m_ConstantMax: 5
+    m_ConstantMax: 50

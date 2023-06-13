@@ -66,6 +66,10 @@ namespace LlamAcademy.Guns.Demo
                     Crosshair.rectTransform.anchoredPosition = Vector2.zero;
                 }
             }
+            else
+            {
+                Crosshair.rectTransform.anchoredPosition = Vector2.zero;
+            }
         }
 
         private bool ShouldManualReload()
