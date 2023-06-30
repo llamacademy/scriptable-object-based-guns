@@ -84,6 +84,7 @@ namespace LlamAcademy.Guns.Editors
             shootConfigBox.Add(shootTypeField);
 
             ObjectField bulletPrefab = new("Bullet Prefab");
+            bulletPrefab.objectType = typeof(Bullet);
             bulletPrefab.BindProperty(shootConfigSO.FindProperty("BulletPrefab"));
             FloatField bulletSpawnForceField = new("Bullet Force");
             bulletSpawnForceField.BindProperty(shootConfigSO.FindProperty("BulletSpawnForce"));
@@ -114,9 +115,11 @@ namespace LlamAcademy.Guns.Editors
             {
                 bulletSpawnForceField.AddToClassList("hidden");
                 bulletPrefab.AddToClassList("hidden");
+                bulletWeightField.AddToClassList("hidden");
             }
             shootConfigBox.Add(bulletPrefab);
             shootConfigBox.Add(bulletSpawnForceField);
+            shootConfigBox.Add(bulletWeightField);
 
             LayerMaskField hitMaskField = new("Hit Mask");
             hitMaskField.BindProperty(shootConfigSO.FindProperty("HitMask"));

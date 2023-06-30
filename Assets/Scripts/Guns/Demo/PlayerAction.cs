@@ -17,6 +17,8 @@ namespace LlamAcademy.Guns.Demo
         private Animator PlayerAnimator;
         [SerializeField]
         private Image Crosshair;
+        [SerializeField]
+        private Transform AimTarget;
         private bool IsReloading;
 
         private void Update()
@@ -41,16 +43,27 @@ namespace LlamAcademy.Guns.Demo
 
         private void UpdateCrosshair()
         {
+            Vector3 gunTipPoint = GunSelector.ActiveGun.GetRaycastOrigin();
+            Vector3 forward;
             if (GunSelector.ActiveGun.ShootConfig.ShootType == ShootType.FromGun)
             {
-                Vector3 gunTipPoint = GunSelector.ActiveGun.GetRaycastOrigin();
-                Vector3 forward = GunSelector.ActiveGun.GetGunForward();
+                forward = GunSelector.ActiveGun.GetGunForward();
+            }
+            else
+            {
+                forward = GunSelector.Camera.transform.forward;
+            }
 
-                Vector3 hitPoint = gunTipPoint + forward * 10;
-                if (Physics.Raycast(gunTipPoint, forward, out RaycastHit hit, float.MaxValue, GunSelector.ActiveGun.ShootConfig.HitMask))
-                {
-                    hitPoint = hit.point;
-                }
+            Vector3 hitPoint = gunTipPoint + forward * 10;
+            if (Physics.Raycast(gunTipPoint, forward, out RaycastHit hit, float.MaxValue, GunSelector.ActiveGun.ShootConfig.HitMask))
+            {
+                hitPoint = hit.point;
+            }
+
+            AimTarget.transform.position = hitPoint;
+
+            if (GunSelector.ActiveGun.ShootConfig.ShootType == ShootType.FromGun)
+            {
                 Vector3 screenSpaceLocation = GunSelector.Camera.WorldToScreenPoint(hitPoint);
 
                 if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
@@ -65,6 +78,10 @@ namespace LlamAcademy.Guns.Demo
                 {
                     Crosshair.rectTransform.anchoredPosition = Vector2.zero;
                 }
+            }
+            else
+            {
+                Crosshair.rectTransform.anchoredPosition = Vector2.zero;
             }
         }
 

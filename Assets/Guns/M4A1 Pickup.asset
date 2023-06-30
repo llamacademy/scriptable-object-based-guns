@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7301d1c341f36478e6140cdbb9ca03, type: 3}
+  m_Name: M4A1 Pickup
+  m_EditorClassIdentifier: 
+  ImpactType: {fileID: 11400000, guid: c50f6f80c300615438adeba37e2ea508, type: 2}
+  Type: 1
+  Name: Assault Rifle
+  ModelPrefab: {fileID: 4638496896245403333, guid: 106e7995a5db69145b9779e6f3a94ab2,
+    type: 3}
+  SpawnPoint: {x: 0.208, y: 0.043, z: 0.112}
+  SpawnRotation: {x: 0, y: 0, z: 0}
+  DamageConfig: {fileID: 11400000, guid: 96fd48763fdeee149961d437433d12e4, type: 2}
+  ShootConfig: {fileID: 11400000, guid: 6c671f1a9963542478d1c6440cc1b847, type: 2}
+  AmmoConfig: {fileID: 11400000, guid: af982e418985baa47b726a32ca936d0b, type: 2}
+  TrailConfig: {fileID: 11400000, guid: 79c1328b195bf3b4497caa97d3949cd7, type: 2}
+  AudioConfig: {fileID: 11400000, guid: 0ec2223a27af3f148a5b367f698cda5e, type: 2}

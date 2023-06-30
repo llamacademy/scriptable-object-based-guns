@@ -3,6 +3,7 @@
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",
     "com.unity.ai.navigation": "1.0.0-exp.4",
+    "com.unity.animation.rigging": "1.1.1",
     "com.unity.cinemachine": "2.8.6",
     "com.unity.collab-proxy": "1.15.16",
     "com.unity.editorcoroutines": "1.0.0",

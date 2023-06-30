@@ -69,6 +69,9 @@ namespace StarterAssets
         [Tooltip("How far in degrees can you move the camera down")]
         public float BottomClamp = -30.0f;
 
+        [Tooltip("How far in degrees can you move the camera left and right relative to the player's forward")]
+        public float HorizontalClamp = 90f;
+
         [Tooltip("Additional degress to override the camera. Useful for fine tuning camera position when locked")]
         public float CameraAngleOverride = 0.0f;
 
@@ -159,10 +162,6 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
-            if (Mouse.current.rightButton.isPressed)
-            {
-                _controller.transform.forward = _mainCamera.transform.forward;
-            }
         }
 
         private void LateUpdate()
@@ -206,8 +205,21 @@ namespace StarterAssets
                 _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
             }
 
+            Quaternion rotation = Quaternion.LookRotation(transform.forward);
+            Vector3 eulerAngles = rotation.eulerAngles;
+            float minY = eulerAngles.y - HorizontalClamp;
+            float maxY = eulerAngles.y + HorizontalClamp;
+
+            if (_cinemachineTargetYaw < minY)
+            {
+                _cinemachineTargetYaw = minY;
+            }
+            else if (_cinemachineTargetPitch > maxY)
+            {
+                _cinemachineTargetPitch = maxY;
+            }
             // clamp our rotations so our values are limited 360 degrees
-            _cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
+            //_cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
             _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
 
             // Cinemachine will follow this target

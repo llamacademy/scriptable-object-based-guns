@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Glock Audio Config
   m_EditorClassIdentifier: 
   Volume: 1
-  FireClips: []
+  FireClips:
+  - {fileID: 8300000, guid: ef2ada2ab023d374cb7e630560869a35, type: 3}
   EmptyClip: {fileID: 0}
-  ReloadClip: {fileID: 0}
-  LastBulletClip: {fileID: 0}
+  ReloadClip: {fileID: 8300000, guid: 271c8e246cf82ac489f60dc0c49a0970, type: 3}
+  LastBulletClip: {fileID: 8300000, guid: 4700484c0be19464aac0e128b5cb988e, type: 3}

@@ -1,4 +1,6 @@
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 namespace LlamAcademy.Guns.Demo
 {
@@ -50,6 +52,21 @@ namespace LlamAcademy.Guns.Demo
                 Animator.SetIKHintPosition(AvatarIKHint.RightElbow, RightElbowIKTarget.position);
                 Animator.SetIKHintPositionWeight(AvatarIKHint.RightElbow, ElbowIKAmount);
             }
+        }
+
+        public void SetGunStyle(bool OneHanded)
+        {
+            Animator.SetBool("Is2HandedGun", !OneHanded);
+            Animator.SetBool("Is1HandedGun", OneHanded);
+        }
+
+        public void Setup(Transform GunParent)
+        {
+            Transform[] allChildren = GunParent.GetComponentsInChildren<Transform>();
+            LeftElbowIKTarget = allChildren.FirstOrDefault(child => child.name == "LeftElbow");
+            RightElbowIKTarget = allChildren.FirstOrDefault(child => child.name == "RightElbow");
+            LeftHandIKTarget = allChildren.FirstOrDefault(child => child.name == "LeftHand");
+            RightHandIKTarget = allChildren.FirstOrDefault(child => child.name == "RightHand");
         }
     }
 }

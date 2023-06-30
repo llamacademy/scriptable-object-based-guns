@@ -73,7 +73,8 @@ namespace LlamAcademy.Guns
         public void Despawn()
         {
             // We do a bunch of other stuff on the same frame, so we really want it to be immediately destroyed, not at Unity's convenience.
-            DestroyImmediate(Model);
+            Model.SetActive(false);
+            Destroy(Model);
             TrailPool.Clear();
             if (BulletPool != null)
             {
