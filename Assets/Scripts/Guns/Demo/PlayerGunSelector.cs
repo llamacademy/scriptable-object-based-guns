@@ -58,7 +58,7 @@ namespace LlamAcademy.Guns.Demo
             SetupGun(Gun);
         }
 
-        public void ApplyModifiers(IModifier[] Modifiers)
+        public void DespawnActiveGun()
         {
             DespawnActiveGun();
             SetupGun(ActiveBaseGun);

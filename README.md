@@ -10,10 +10,11 @@ In this tutorial repository and accompanying [video series](https://www.youtube.
 * Reloading - [Implemented in Part 4](https://www.youtube.com/watch?v=Tn8RYWnEd94&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=4)
 * Sound Effects - [Implemented in Part 5](https://www.youtube.com/watch?v=hV3BAw2c9Io&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=5)
 * Projectile Guns - [Implemented in Part 6](https://www.youtube.com/watch?v=LIB7uGDZou0&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=6)
-* Accurate Aiming / Crosshairs - [Implemented in Part 7](https://www.youtube.com/watch?v=x8ECpNWMmag&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=7&pp=sAQB) + With Inverse Kinematics and Animation Rigging in [Part 12](https://www.youtube.com/watch?v=uLg2ci8uZgU&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=12)
+* Accurate Aiming / Crosshairs - [Implemented in Part 7](https://www.youtube.com/watch?v=x8ECpNWMmag&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=7&pp=sAQB) + With Inverse Kinematics and Animation Rigging in [Part 12](https://www.youtube.com/watch?v=chgLRjSaoXc&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=12)
 * Attachments - [Modifier System in Part 8](https://www.youtube.com/watch?v=RbIk6VnwHnI&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=8) + Attachments UI & Applying to a Gun in [Part 10](https://www.youtube.com/watch?v=8wBEb2l0vZQ&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=10)
 * Animated Models - Coming with a Future Video
 * Damage Effects such as burning, freezing, explosions, etc... - [Implemented in Part 9](https://www.youtube.com/watch?v=Y-Qr6GPN2v0&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=9) with `ICollisionHandler`
+* Gun & Ammo Pick-ups - [Implemented in Part 11](https://www.youtube.com/watch?v=Fpt9xA3Ftmo&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=11)
 * And even more! - Coming with a Future Video
 
 Impact Effects _are not_ in scope of this tutorial series. They are handled using the [Surface Manager](https://github.com/llamacademy/surface-manager) (tutorial [video here](https://youtu.be/kT2ZxjMuT_4)).
@@ -44,7 +45,7 @@ If there is something broken on a particular branch (each video has a dedicated 
 Since this is intended as a learning tool more than an "off the shelf solution for everything related to guns", requests can be made, but new features will not be added without an accompanying tutorial.
 
 ### Aiming
-Starting with [Part 12](https://www.youtube.com/watch?v=uLg2ci8uZgU&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=12), Aiming with the Animation Rigging package was added, and right click to aim in the ThirdPersonController was removed. 
+Starting with [Part 12](https://www.youtube.com/watch?v=chgLRjSaoXc&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=12), Aiming with the Animation Rigging package was added, and right click to aim in the ThirdPersonController was removed. 
 
 Aiming is handled by clamping the camera rotation to relatively closely match what the player's rig can bend to. It's important to note as well that `ShootType.FromGun` does not work well with Animation Rigging and IK since it has the Gun driving the aim target position, and the IK / Rigging trying to aim the gun. If you want to use "FromGun" the Animation Rigging should be disabled or weights set to 0.
 
