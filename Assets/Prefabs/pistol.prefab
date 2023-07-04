@@ -117,7 +117,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 73094031263575997}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.263, y: -0.011, z: -0.394}
+  m_LocalPosition: {x: 0.117, y: -0.014, z: -0.384}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -133,6 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 470933884182090030}
+  - component: {fileID: -5733452190974698781}
   m_Layer: 1
   m_Name: pistol
   m_TagString: Untagged

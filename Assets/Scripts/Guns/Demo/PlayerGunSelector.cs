@@ -1,6 +1,5 @@
 using LlamAcademy.Guns.Modifiers;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace LlamAcademy.Guns.Demo
@@ -21,9 +20,10 @@ namespace LlamAcademy.Guns.Demo
         [Space]
         [Header("Runtime Filled")]
         public GunScriptableObject ActiveGun;
+        [SerializeField]
         private GunScriptableObject ActiveBaseGun;
 
-        private void Awake()
+        private void Start()
         {
             GunScriptableObject gun = Guns.Find(gun => gun.Type == Gun);
 
@@ -33,26 +33,17 @@ namespace LlamAcademy.Guns.Demo
                 return;
             }
 
-            ActiveBaseGun = gun;
-            SetupGun(ActiveBaseGun);
+            SetupGun(gun);
         }
 
         private void SetupGun(GunScriptableObject Gun)
         {
+            ActiveBaseGun = Gun;
             ActiveGun = Gun.Clone() as GunScriptableObject;
             ActiveGun.Spawn(GunParent, this, Camera);
 
-            // some magic for IK
-            DoIKMagic();
-        }
-
-        private void DoIKMagic()
-        {
-            Transform[] allChildren = GunParent.GetComponentsInChildren<Transform>();
-            InverseKinematics.LeftElbowIKTarget = allChildren.FirstOrDefault(child => child.name == "LeftElbow");
-            InverseKinematics.RightElbowIKTarget = allChildren.FirstOrDefault(child => child.name == "RightElbow");
-            InverseKinematics.LeftHandIKTarget = allChildren.FirstOrDefault(child => child.name == "LeftHand");
-            InverseKinematics.RightHandIKTarget = allChildren.FirstOrDefault(child => child.name == "RightHand");
+            InverseKinematics.SetGunStyle(ActiveGun.Type == GunType.Glock);
+            InverseKinematics.Setup(GunParent);
         }
 
         public void DespawnActiveGun()
@@ -64,11 +55,10 @@ namespace LlamAcademy.Guns.Demo
         public void PickupGun(GunScriptableObject Gun)
         {
             DespawnActiveGun();
-            ActiveBaseGun = Gun;
-            SetupGun(ActiveBaseGun);
+            SetupGun(Gun);
         }
 
-        public void ApplyModifiers(IModifier[] Modifiers)
+        public void DespawnActiveGun()
         {
             DespawnActiveGun();
             SetupGun(ActiveBaseGun);

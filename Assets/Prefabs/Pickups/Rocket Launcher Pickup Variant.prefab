@@ -4895,7 +4895,7 @@ PrefabInstance:
     - target: {fileID: 612022350831673621, guid: db437e89855bbfa4ca0c23a441887b45,
         type: 3}
       propertyPath: m_Name
-      value: Rocket Launcher Pickup
+      value: Rocket Launcher Pickup Variant
       objectReference: {fileID: 0}
     - target: {fileID: 612022350831673621, guid: db437e89855bbfa4ca0c23a441887b45,
         type: 3}
@@ -4930,7 +4930,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.25, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1353861155
+--- !u!114 &-3335597428689547482
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4942,4 +4942,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64064482e9595794880f672231da5816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gun: {fileID: 11400000, guid: a6085bb1391401f4ba0915a6d262fe5f, type: 2}
+  Gun: {fileID: 11400000, guid: c3b5d65964eb8854c8eb531d5c3c69dc, type: 2}
+  SpinDirection: {x: 0, y: 1, z: 0}

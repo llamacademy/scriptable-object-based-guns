@@ -4924,7 +4924,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.33, y: 0.33, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &828825675
+--- !u!114 &4014629119836595161
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4937,6 +4937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Gun: {fileID: 11400000, guid: 862bde27af87bee49867a963d3f326d2, type: 2}
+  SpinDirection: {x: 0, y: 1, z: 0}
 --- !u!4 &2940609794372063520 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5410108436111545471, guid: 106e7995a5db69145b9779e6f3a94ab2,

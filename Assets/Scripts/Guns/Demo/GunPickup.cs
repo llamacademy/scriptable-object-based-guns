@@ -10,7 +10,7 @@ namespace LlamAcademy.Guns.Demo
 
         private void Update()
         {
-            transform.Rotate(Vector3.up);
+            transform.Rotate(SpinDirection);
         }
 
         private void OnTriggerEnter(Collider other)

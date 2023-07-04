@@ -95,8 +95,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9202724132661331831}
-  - component: {fileID: 2586632418338260314}
   - component: {fileID: 1170753294815451355}
+  - component: {fileID: -4270755463822880227}
   m_Layer: 10
   m_Name: Rocket Ammo Pickup
   m_TagString: Untagged
@@ -121,21 +121,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!114 &2586632418338260314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8430022152215977421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c0292ffe326c094daae14986be3b2fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AmmoAmount: 30
-  Type: 2
-  SpinDirection: {x: 0, y: 0, z: 1}
 --- !u!135 &1170753294815451355
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -149,6 +134,21 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-4270755463822880227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8430022152215977421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c0292ffe326c094daae14986be3b2fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 2
+  AmmoAmount: 2
+  SpinDirection: {x: 0, y: 0, z: 1}
 --- !u!1 &8663832400595079532
 GameObject:
   m_ObjectHideFlags: 0

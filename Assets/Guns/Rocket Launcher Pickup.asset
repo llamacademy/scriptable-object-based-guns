@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ImpactType: {fileID: 11400000, guid: 1e187fe0efa11b34fb0a1cd481581448, type: 2}
   Type: 2
-  Name: Rocket Launcher Pickup
+  Name: Rocket Launcher
   ModelPrefab: {fileID: 612022350831673621, guid: db437e89855bbfa4ca0c23a441887b45,
     type: 3}
-  SpawnPoint: {x: 0.13, y: 0.07, z: 0.19}
+  SpawnPoint: {x: 0.191, y: 0.0691, z: -0.002}
   SpawnRotation: {x: 0, y: 0, z: 0}
   DamageConfig: {fileID: 11400000, guid: 43cf6ac83c2be404bba3430be4123646, type: 2}
   ShootConfig: {fileID: 11400000, guid: 81f27a49716367f4e82292b183e9a139, type: 2}
