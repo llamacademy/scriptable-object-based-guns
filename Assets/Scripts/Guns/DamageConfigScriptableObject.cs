@@ -13,9 +13,11 @@ namespace LlamAcademy.Guns
             DamageCurve.mode = ParticleSystemCurveMode.Curve;
         }
 
-        public int GetDamage(float Distance = 0)
+        public int GetDamage(float Distance = 0, float DamageMultiplier = 1)
         {
-            return Mathf.CeilToInt(DamageCurve.Evaluate(Distance, Random.value));
+            return Mathf.CeilToInt(
+                DamageCurve.Evaluate(Distance, Random.value) * DamageMultiplier
+            );
         }
 
         public object Clone()

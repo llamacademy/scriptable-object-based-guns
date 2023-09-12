@@ -15,7 +15,7 @@ In this tutorial repository and accompanying [video series](https://www.youtube.
 * Animated Models - Coming with a Future Video
 * Damage Effects such as burning, freezing, explosions, etc... - [Implemented in Part 9](https://www.youtube.com/watch?v=Y-Qr6GPN2v0&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=9) with `ICollisionHandler`
 * Gun & Ammo Pick-ups - [Implemented in Part 11](https://www.youtube.com/watch?v=Fpt9xA3Ftmo&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=11)
-* And even more! - Coming with a Future Video
+* Bullet Penetration - [Implemented in Part 13](https://www.youtube.com/watch?v=3awUff2-7Y8&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=13&pp=gAQBiAQBsAQB)
 
 Impact Effects _are not_ in scope of this tutorial series. They are handled using the [Surface Manager](https://github.com/llamacademy/surface-manager) (tutorial [video here](https://youtu.be/kT2ZxjMuT_4)).
 
@@ -73,12 +73,11 @@ Want to provide one-time support? You can send a Super Thanks on any video!
 
 ### Awesome Supporter Tier
 * AudemKay
-* Matt Parkin
 * Ivan
 * Reulan
 * Iffy Obelus
-* Dwarf
 * SolarInt
+* Perry
 * YOUR NAME HERE!
 
 ### Supporters
@@ -99,10 +98,10 @@ Want to provide one-time support? You can send a Super Thanks on any video!
 * Ben
 * Xuul
 * Christiaan Van Steenwijk
+* Michael Creel
+* Joseph Janosko
+* Joao Henrique Machado Silva
 * YOUR NAME HERE!
-
-### ♥ Super Thanks
-* Tom 
 
 ## Other Projects
 Interested in AI Topics in Unity, or other tutorials on Unity in general? 

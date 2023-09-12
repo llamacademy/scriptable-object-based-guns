@@ -1,6 +1,5 @@
 using LlamAcademy.Guns.ImpactEffects;
 using LlamAcademy.ImpactSystem;
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -8,7 +7,7 @@ using UnityEngine.Pool;
 namespace LlamAcademy.Guns
 {
     [CreateAssetMenu(fileName = "Gun", menuName = "Guns/Gun", order = 0)]
-    public class GunScriptableObject : ScriptableObject, ICloneable
+    public class GunScriptableObject : ScriptableObject, System.ICloneable
     {
         public ImpactType ImpactType;
         public GunType Type;
@@ -22,6 +21,7 @@ namespace LlamAcademy.Guns
         public AmmoConfigScriptableObject AmmoConfig;
         public TrailConfigScriptableObject TrailConfig;
         public AudioConfigScriptableObject AudioConfig;
+        public BulletPenetrationConfigScriptableObject BulletPenConfig;
 
         public ICollisionHandler[] BulletImpactEffects = new ICollisionHandler[0];
 
@@ -161,7 +161,7 @@ namespace LlamAcademy.Guns
                     ShootConfig.MaxSpreadTime
                 );
                 float lerpTime = (ShootConfig.RecoilRecoverySpeed - (Time.time - StopShootingTime))
-                    / ShootConfig.RecoilRecoverySpeed;
+                                 / ShootConfig.RecoilRecoverySpeed;
 
                 InitialClickTime = Time.time - Mathf.Lerp(0, lastDuration, Mathf.Clamp01(lerpTime));
             }
@@ -188,14 +188,15 @@ namespace LlamAcademy.Guns
                 }
                 else
                 {
-                    shootDirection = ActiveCamera.transform.forward + ActiveCamera.transform.TransformDirection(spreadAmount);
+                    shootDirection = ActiveCamera.transform.forward +
+                                     ActiveCamera.transform.TransformDirection(spreadAmount);
                 }
 
                 AmmoConfig.CurrentClipAmmo--;
 
                 if (ShootConfig.IsHitscan)
                 {
-                    DoHitscanShoot(shootDirection);
+                    DoHitscanShoot(shootDirection, GetRaycastOrigin(), ShootSystem.transform.position);
                 }
                 else
                 {
@@ -213,7 +214,7 @@ namespace LlamAcademy.Guns
         {
             Bullet bullet = BulletPool.Get();
             bullet.gameObject.SetActive(true);
-            bullet.OnCollsion += HandleBulletCollision;
+            bullet.OnCollision += HandleBulletCollision;
 
             // We have to ensure if shooting from the camera, but shooting real proejctiles, that we aim the gun at the hit point
             // of the raycast from the camera. Otherwise the aim is off.
@@ -252,10 +253,10 @@ namespace LlamAcademy.Guns
         /// See <see cref="PlayTrail(Vector3, Vector3, RaycastHit)"/> for impact logic.
         /// </summary>
         /// <param name="ShootDirection"></param>
-        private void DoHitscanShoot(Vector3 ShootDirection)
+        private void DoHitscanShoot(Vector3 ShootDirection, Vector3 Origin, Vector3 TrailOrigin, int Iteration = 0)
         {
             if (Physics.Raycast(
-                    GetRaycastOrigin(),
+                    Origin,
                     ShootDirection,
                     out RaycastHit hit,
                     float.MaxValue,
@@ -264,9 +265,10 @@ namespace LlamAcademy.Guns
             {
                 ActiveMonoBehaviour.StartCoroutine(
                     PlayTrail(
-                        ShootSystem.transform.position,
+                        TrailOrigin,
                         hit.point,
-                        hit
+                        hit,
+                        Iteration
                     )
                 );
             }
@@ -274,9 +276,10 @@ namespace LlamAcademy.Guns
             {
                 ActiveMonoBehaviour.StartCoroutine(
                     PlayTrail(
-                        ShootSystem.transform.position,
-                        ShootSystem.transform.position + (ShootDirection * TrailConfig.MissDistance),
-                        new RaycastHit()
+                        TrailOrigin,
+                        TrailOrigin + (ShootDirection * TrailConfig.MissDistance),
+                        new RaycastHit(),
+                        Iteration
                     )
                 );
             }
@@ -293,10 +296,10 @@ namespace LlamAcademy.Guns
             if (ShootConfig.ShootType == ShootType.FromCamera)
             {
                 origin = ActiveCamera.transform.position
-                    + ActiveCamera.transform.forward * Vector3.Distance(
-                            ActiveCamera.transform.position,
-                            ShootSystem.transform.position
-                        );
+                         + ActiveCamera.transform.forward * Vector3.Distance(
+                             ActiveCamera.transform.position,
+                             ShootSystem.transform.position
+                         );
             }
 
             return origin;
@@ -319,7 +322,7 @@ namespace LlamAcademy.Guns
         /// <param name="EndPoint">Ending point for the trail</param>
         /// <param name="Hit">The hit object. If nothing is hit, simply pass new RaycastHit()</param>
         /// <returns>Coroutine</returns>
-        private IEnumerator PlayTrail(Vector3 StartPoint, Vector3 EndPoint, RaycastHit Hit)
+        private IEnumerator PlayTrail(Vector3 StartPoint, Vector3 EndPoint, RaycastHit Hit, int Iteration = 0)
         {
             TrailRenderer instance = TrailPool.Get();
             instance.gameObject.SetActive(true);
@@ -346,7 +349,7 @@ namespace LlamAcademy.Guns
 
             if (Hit.collider != null)
             {
-                HandleBulletImpact(distance, EndPoint, Hit.normal, Hit.collider);
+                HandleBulletImpact(distance, EndPoint, Hit.normal, Hit.collider, Iteration);
             }
 
             yield return new WaitForSeconds(TrailConfig.Duration);
@@ -354,25 +357,76 @@ namespace LlamAcademy.Guns
             instance.emitting = false;
             instance.gameObject.SetActive(false);
             TrailPool.Release(instance);
+
+            if (BulletPenConfig != null && BulletPenConfig.MaxObjectsToPenetrate > Iteration)
+            {
+                yield return null;
+                Vector3 direction = (EndPoint - StartPoint).normalized;
+                Vector3 backCastOrigin = Hit.point + direction * BulletPenConfig.MaxPenetrationDepth;
+
+                if (Physics.Raycast(
+                        backCastOrigin,
+                        -direction,
+                        out RaycastHit hit,
+                        BulletPenConfig.MaxPenetrationDepth,
+                        ShootConfig.HitMask
+                    ))
+                {
+                    Vector3 penetrationOrigin = hit.point;
+                    direction += new Vector3(
+                        Random.Range(-BulletPenConfig.AccuracyLoss.x, BulletPenConfig.AccuracyLoss.x),
+                        Random.Range(-BulletPenConfig.AccuracyLoss.y, BulletPenConfig.AccuracyLoss.y),
+                        Random.Range(-BulletPenConfig.AccuracyLoss.z, BulletPenConfig.AccuracyLoss.z)
+                    );
+
+                    DoHitscanShoot(direction, penetrationOrigin, penetrationOrigin, Iteration + 1);
+                }
+            }
         }
 
         /// <summary>
-        /// Callback handler for <see cref="Bullet.OnCollsion"/>. Disables TrailRenderer, releases the 
+        /// Callback handler for <see cref="Bullet.OnCollision"/>. Disables TrailRenderer, releases the 
         /// Bullet from the BulletPool, and applies impact effects if <paramref name="Collision"/> is not null.
         /// </summary>
         /// <param name="Bullet"></param>
         /// <param name="Collision"></param>
-        private void HandleBulletCollision(Bullet Bullet, Collision Collision)
+        private void HandleBulletCollision(Bullet Bullet, Collision Collision, int ObjectsPenetrated)
         {
             TrailRenderer trail = Bullet.GetComponentInChildren<TrailRenderer>();
-            if (trail != null)
-            {
-                trail.transform.SetParent(null, true);
-                ActiveMonoBehaviour.StartCoroutine(DelayedDisableTrail(trail));
-            }
 
-            Bullet.gameObject.SetActive(false);
-            BulletPool.Release(Bullet);
+            if (Collision != null && BulletPenConfig != null &&
+                BulletPenConfig.MaxObjectsToPenetrate > ObjectsPenetrated)
+            {
+                Vector3 direction = (Bullet.transform.position - Bullet.SpawnLocation).normalized;
+                ContactPoint contact = Collision.GetContact(0);
+                Vector3 backCastOrigin = contact.point + direction * BulletPenConfig.MaxPenetrationDepth;
+
+                if (Physics.Raycast(
+                        backCastOrigin,
+                        -direction,
+                        out RaycastHit hit,
+                        BulletPenConfig.MaxPenetrationDepth,
+                        ShootConfig.HitMask
+                    ))
+                {
+                    direction += new Vector3(
+                        Random.Range(-BulletPenConfig.AccuracyLoss.x, BulletPenConfig.AccuracyLoss.x),
+                        Random.Range(-BulletPenConfig.AccuracyLoss.y, BulletPenConfig.AccuracyLoss.y),
+                        Random.Range(-BulletPenConfig.AccuracyLoss.z, BulletPenConfig.AccuracyLoss.z)
+                    );
+                    Bullet.transform.position = hit.point + direction * 0.01f;
+
+                    Bullet.Rigidbody.velocity = Bullet.SpawnVelocity - direction;
+                }
+                else
+                {
+                    DisableTrailAndBullet(trail, Bullet);
+                }
+            }
+            else
+            {
+                DisableTrailAndBullet(trail, Bullet);
+            }
 
             if (Collision != null)
             {
@@ -382,9 +436,22 @@ namespace LlamAcademy.Guns
                     Vector3.Distance(contactPoint.point, Bullet.SpawnLocation),
                     contactPoint.point,
                     contactPoint.normal,
-                    contactPoint.otherCollider
+                    contactPoint.otherCollider,
+                    ObjectsPenetrated
                 );
             }
+        }
+
+        private void DisableTrailAndBullet(TrailRenderer Trail, Bullet Bullet)
+        {
+            if (Trail != null)
+            {
+                Trail.transform.SetParent(null, true);
+                ActiveMonoBehaviour.StartCoroutine(DelayedDisableTrail(Trail));
+            }
+
+            Bullet.gameObject.SetActive(false);
+            BulletPool.Release(Bullet);
         }
 
         /// <summary>
@@ -414,19 +481,29 @@ namespace LlamAcademy.Guns
             float DistanceTraveled,
             Vector3 HitLocation,
             Vector3 HitNormal,
-            Collider HitCollider)
+            Collider HitCollider,
+            int ObjectsPenetrated = 0)
         {
             SurfaceManager.Instance.HandleImpact(
-                    HitCollider.gameObject,
-                    HitLocation,
-                    HitNormal,
-                    ImpactType,
-                    0
-                );
+                HitCollider.gameObject,
+                HitLocation,
+                HitNormal,
+                ImpactType,
+                0
+            );
 
             if (HitCollider.TryGetComponent(out IDamageable damageable))
             {
-                damageable.TakeDamage(DamageConfig.GetDamage(DistanceTraveled));
+                float maxPercentDamage = 1;
+                if (BulletPenConfig != null && ObjectsPenetrated > 0)
+                {
+                    for (int i = 0; i < ObjectsPenetrated; i++)
+                    {
+                        maxPercentDamage *= BulletPenConfig.DamageRetentionPercentage;
+                    }
+                }
+
+                damageable.TakeDamage(DamageConfig.GetDamage(DistanceTraveled, maxPercentDamage));
             }
 
             foreach (ICollisionHandler collisionHandler in BulletImpactEffects)
@@ -481,6 +558,7 @@ namespace LlamAcademy.Guns
             config.AmmoConfig = AmmoConfig.Clone() as AmmoConfigScriptableObject;
             config.TrailConfig = TrailConfig.Clone() as TrailConfigScriptableObject;
             config.AudioConfig = AudioConfig.Clone() as AudioConfigScriptableObject;
+            config.BulletPenConfig = BulletPenConfig.Clone() as BulletPenetrationConfigScriptableObject;
 
             config.ModelPrefab = ModelPrefab;
             config.SpawnPoint = SpawnPoint;
