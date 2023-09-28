@@ -16,6 +16,7 @@ In this tutorial repository and accompanying [video series](https://www.youtube.
 * Damage Effects such as burning, freezing, explosions, etc... - [Implemented in Part 9](https://www.youtube.com/watch?v=Y-Qr6GPN2v0&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=9) with `ICollisionHandler`
 * Gun & Ammo Pick-ups - [Implemented in Part 11](https://www.youtube.com/watch?v=Fpt9xA3Ftmo&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=11)
 * Bullet Penetration - [Implemented in Part 13](https://www.youtube.com/watch?v=3awUff2-7Y8&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=13&pp=gAQBiAQBsAQB)
+* Persisting Player Loadout - [Implemented in Part 14](https://www.youtube.com/watch?v=fwBBwoClR9A&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=14)
 
 Impact Effects _are not_ in scope of this tutorial series. They are handled using the [Surface Manager](https://github.com/llamacademy/surface-manager) (tutorial [video here](https://youtu.be/kT2ZxjMuT_4)).
 
@@ -86,21 +87,21 @@ Want to provide one-time support? You can send a Super Thanks on any video!
 * Dr Bash
 * Tarik
 * Sean
-* ag10g
 * Elijah Singer
 * Lurking Ninja
 * Josh Meyer
 * Ewald Schulte
-* Dom C
 * Andrew Allbright
+* ag10g
+* Dom C
 * AudemKay
 * Claduiu Barsan-Pipu
 * Ben
 * Xuul
 * Christiaan Van Steenwijk
-* Michael Creel
 * Joseph Janosko
 * Joao Henrique Machado Silva
+* ChimeraDev
 * YOUR NAME HERE!
 
 ## Other Projects

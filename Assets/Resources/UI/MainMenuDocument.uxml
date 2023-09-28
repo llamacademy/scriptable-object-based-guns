@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/UI/Root%20Styles.uss?fileID=7433441132597879392&amp;guid=4a3f9a3db294f9c4a8a087456c7a0095&amp;type=3#Root Styles" />
+    <ui:VisualElement name="root" style="padding-left: 20%; padding-right: 20%; justify-content: center; max-height: 100%; max-width: 100%; min-height: 100%; min-width: 100%; background-color: rgb(34, 34, 34);">
+        <ui:Button text="Play" display-tooltip-when-elided="true" name="play" style="margin-bottom: 24px;" />
+        <ui:Button text="Loadout" display-tooltip-when-elided="true" enable-rich-text="true" name="loadout" />
+    </ui:VisualElement>
+</ui:UXML>

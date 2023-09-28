@@ -8,32 +8,35 @@ namespace LlamAcademy.Guns.Demo
     public class PlayerGunSelector : MonoBehaviour
     {
         public Camera Camera;
-        [SerializeField]
-        private GunType Gun;
-        [SerializeField]
-        private Transform GunParent;
-        [SerializeField]
-        private List<GunScriptableObject> Guns;
-        [SerializeField]
-        private PlayerIK InverseKinematics;
+        [field: SerializeField] public GunType Gun { get; private set; }
 
-        [Space]
-        [Header("Runtime Filled")]
-        public GunScriptableObject ActiveGun;
-        [SerializeField]
-        private GunScriptableObject ActiveBaseGun;
+        [SerializeField] private Transform GunParent;
+        [field: SerializeField] public List<GunScriptableObject> Guns { get; private set; }
+        [SerializeField] private PlayerIK InverseKinematics;
+
+        [Space] [Header("Runtime Filled")] public GunScriptableObject ActiveGun;
+        [field: SerializeField] public GunScriptableObject ActiveBaseGun { get; private set; }
+
+        /// <summary>
+        /// If you are not using the demo AttachmentController, you may want it to initialize itself on start.
+        /// If you are configuring this separately using <see cref="SetupGun"/> then set this to false.
+        /// </summary>
+        [SerializeField] private bool InitializeOnStart = false;
 
         private void Start()
         {
-            GunScriptableObject gun = Guns.Find(gun => gun.Type == Gun);
-
-            if (gun == null)
+            if (InitializeOnStart)
             {
-                Debug.LogError($"No GunScriptableObject found for GunType: {gun}");
-                return;
-            }
+                GunScriptableObject gun = Guns.Find(gun => gun.Type == Gun);
 
-            SetupGun(gun);
+                if (gun == null)
+                {
+                    Debug.LogError($"No GunScriptableObject found for GunType: {gun}");
+                    return;
+                }
+
+                SetupGun(gun);
+            }
         }
 
         private void SetupGun(GunScriptableObject Gun)
@@ -48,13 +51,18 @@ namespace LlamAcademy.Guns.Demo
 
         public void DespawnActiveGun()
         {
-            ActiveGun.Despawn();
+            if (ActiveGun != null)
+            {
+                ActiveGun.Despawn();
+            }
+
             Destroy(ActiveGun);
         }
 
         public void PickupGun(GunScriptableObject Gun)
         {
             DespawnActiveGun();
+            this.Gun = Gun.Type;
             SetupGun(Gun);
         }
 
@@ -65,7 +73,7 @@ namespace LlamAcademy.Guns.Demo
 
             foreach (IModifier modifier in Modifiers)
             {
-                modifier.Apply(ActiveGun);    
+                modifier.Apply(ActiveGun);
             }
         }
     }
