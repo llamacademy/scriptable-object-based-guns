@@ -18,6 +18,7 @@ namespace LlamAcademy.Guns.Demo
         [Range(0, 1f)]
         public float ElbowIKAmount = 1f;
 
+        [SerializeField]
         private Animator Animator;
 
         private void Awake()

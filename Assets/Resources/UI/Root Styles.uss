@@ -1,3 +1,7 @@
+.unity-button {
+    padding: 16px;
+    font-size: 48px;
+}
 
 .hidden {
     opacity: 0;
@@ -29,12 +33,15 @@
     flex-grow: 0;
 }
 
-.m4a1 {
+.m4a1,.assault-rifle {
     background-image: url('project://database/Assets/Textures/M4A1.png?fileID=21300000&guid=5e0245b99de779b4cae9cd15e7590a2a&type=3#M4A1');
 }
 
 .glock {
     background-image: url('project://database/Assets/Textures/Glock.png?fileID=21300000&guid=ea83b90d9f541b6498c8480cf28490bb&type=3#Glock');
+}
+.rocket-launcher {
+    background-image: url('project://database/Assets/Textures/explosive rounds.png');
 }
 
 .frost-rounds {
@@ -76,6 +83,16 @@
     transition: -unity-background-image-tint-color 0.125s;
 }
 
+#gun-selector-background {
+    border-radius: 50%;
+    background-color: #999999;
+    transition: background-color 0.125s ease-in-out;
+}
+#gun-selector-background:hover {
+    background-color: #666666;
+    transition: background-color 0.125s ease-in-out;
+}
+
 .name {
     font-size: 24px;
 }
@@ -113,7 +130,7 @@
 }
 
 .fade-out-left {
-    translate: -100% 0%;
+    translate: -200% 0%;
     opacity: 0;
     transition: translate 0.25s ease-in-out 0.25s, opacity 0.25s linear 0.25s;
 }
