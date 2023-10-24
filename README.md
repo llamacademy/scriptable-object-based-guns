@@ -50,9 +50,6 @@ Starting with [Part 12](https://www.youtube.com/watch?v=chgLRjSaoXc&list=PLllNmP
 
 Aiming is handled by clamping the camera rotation to relatively closely match what the player's rig can bend to. It's important to note as well that `ShootType.FromGun` does not work well with Animation Rigging and IK since it has the Gun driving the aim target position, and the IK / Rigging trying to aim the gun. If you want to use "FromGun" the Animation Rigging should be disabled or weights set to 0.
 
-### Escape / Customize Menu
-In the demo scene, pressing `Esc` brings up a customization menu. This is likely not realistic. In most games, players cannot not dynamically change modifiers at runtime. If you imagine this happens on a menu before spawning the player, it should work as expected. If you press escape after running around, swapping guns, and shooting, you may not get the result you expected because not all cases were covered.
-
 ### Animations
 Animations such as Pistol Idle and Rifle Aim cannot be included in the repository. You can find the Pistol Idle on [Mixamo](https://mixamo.com/#/) for free labeled "Pistol Idle". They also have a Rifle Idle animation you can bring in as well.
 
@@ -92,8 +89,6 @@ Want to provide one-time support? You can send a Super Thanks on any video!
 * Josh Meyer
 * Ewald Schulte
 * Andrew Allbright
-* ag10g
-* Dom C
 * AudemKay
 * Claduiu Barsan-Pipu
 * Ben
@@ -102,6 +97,7 @@ Want to provide one-time support? You can send a Super Thanks on any video!
 * Joseph Janosko
 * Joao Henrique Machado Silva
 * ChimeraDev
+* Wendy Whitner
 * YOUR NAME HERE!
 
 ## Other Projects
