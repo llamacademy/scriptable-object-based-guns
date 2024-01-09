@@ -10,11 +10,13 @@ namespace LlamAcademy.Guns.ImpactEffects
         /// <param name="ImpactedObject"></param>
         /// <param name="HitPosition"></param>
         /// <param name="HitNormal"></param>
+        /// <param name="DistanceTravelled">Total distance travelled by the bullet</param>
         /// <param name="Gun"></param>
         void HandleImpact(
             Collider ImpactedObject,
             Vector3 HitPosition,
             Vector3 HitNormal,
+            float DistanceTravelled,
             GunScriptableObject Gun
         );
     }

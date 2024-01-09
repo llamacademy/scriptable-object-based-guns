@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Web.UI.Design;
+﻿using System.Threading.Tasks;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -82,6 +80,10 @@ namespace LlamAcademy.Guns.Editors
             EnumField shootTypeField = new("Shoot Type", ShootType.FromGun);
             shootTypeField.BindProperty(shootConfigSO.FindProperty("ShootType"));
             shootConfigBox.Add(shootTypeField);
+            
+            IntegerField bulletsPerShotField = new("Bullets Per Shot");
+            bulletsPerShotField.BindProperty(shootConfigSO.FindProperty("BulletsPerShot"));
+            shootConfigBox.Add(bulletsPerShotField);
 
             ObjectField bulletPrefab = new("Bullet Prefab");
             bulletPrefab.objectType = typeof(Bullet);
@@ -177,6 +179,7 @@ namespace LlamAcademy.Guns.Editors
             EnumField spreadTypeField = new("Spread Type", BulletSpreadType.Simple);
 
             Vector3Field simpleSpreadField = new("Spread Range");
+            Vector3Field minSpreadField = new("Minimum Spread");
             HelpBox spreadHelpBox = new("This defines the offset in x/y/z direction when \"Max Spread Time\" has been reached.\r\n" +
                 "Lower values mean less total recoil.\r\n" +
                 "Range goes from negative to positive of the provided value. For example, 0.1 on x means a range of -0.1 to 0.1 will be chosen for the x offset"
@@ -199,6 +202,7 @@ namespace LlamAcademy.Guns.Editors
                     case BulletSpreadType.TextureBased:
                         {
                             simpleSpreadField.AddToClassList("hidden");
+                            minSpreadField.AddToClassList("hidden");
                             spreadHelpBox.AddToClassList("hidden");
                             spreadMultiplierField.RemoveFromClassList("hidden");
                             spreadTextureField.RemoveFromClassList("hidden");
@@ -207,6 +211,7 @@ namespace LlamAcademy.Guns.Editors
                     case BulletSpreadType.Simple:
                         {
                             simpleSpreadField.RemoveFromClassList("hidden");
+                            minSpreadField.RemoveFromClassList("hidden");
                             spreadHelpBox.RemoveFromClassList("hidden");
                             spreadMultiplierField.AddToClassList("hidden");
                             spreadTextureField.AddToClassList("hidden");
@@ -215,6 +220,7 @@ namespace LlamAcademy.Guns.Editors
                     case BulletSpreadType.None:
                         {
                             simpleSpreadField.AddToClassList("hidden");
+                            minSpreadField.AddToClassList("hidden");
                             spreadHelpBox.AddToClassList("hidden");
                             spreadMultiplierField.AddToClassList("hidden");
                             spreadTextureField.AddToClassList("hidden");
@@ -226,7 +232,9 @@ namespace LlamAcademy.Guns.Editors
 
 
             simpleSpreadField.BindProperty(shootConfigSO.FindProperty("Spread"));
+            minSpreadField.BindProperty(shootConfigSO.FindProperty("MinSpread"));
             shootConfigBox.Add(spreadHelpBox);
+            shootConfigBox.Add(minSpreadField);
             shootConfigBox.Add(simpleSpreadField);
 
             shootConfigBox.Add(spreadTextureField);
@@ -235,6 +243,7 @@ namespace LlamAcademy.Guns.Editors
             if (spreadType.enumValueIndex != 1) // simple spread
             {
                 simpleSpreadField.AddToClassList("hidden");
+                minSpreadField.AddToClassList("hidden");
                 spreadHelpBox.AddToClassList("hidden");
             }
             else if (spreadType.enumValueIndex != 2) // texture based spread

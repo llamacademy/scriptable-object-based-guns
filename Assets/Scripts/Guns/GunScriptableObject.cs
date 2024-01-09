@@ -1,8 +1,11 @@
+using System;
 using LlamAcademy.Guns.ImpactEffects;
 using LlamAcademy.ImpactSystem;
 using System.Collections;
+using LlamAcademy.Guns.Guns.ImpactEffects;
 using UnityEngine;
 using UnityEngine.Pool;
+using Random = UnityEngine.Random;
 
 namespace LlamAcademy.Guns
 {
@@ -22,6 +25,7 @@ namespace LlamAcademy.Guns
         public TrailConfigScriptableObject TrailConfig;
         public AudioConfigScriptableObject AudioConfig;
         public BulletPenetrationConfigScriptableObject BulletPenConfig;
+        public KnockbackConfigScriptableObject KnockbackConfig;
 
         public ICollisionHandler[] BulletImpactEffects = new ICollisionHandler[0];
 
@@ -65,6 +69,14 @@ namespace LlamAcademy.Guns
 
             ShootingAudioSource = Model.GetComponent<AudioSource>();
             ShootSystem = Model.GetComponentInChildren<ParticleSystem>();
+
+            if (KnockbackConfig.KnockbackStrength > 0)
+            {
+                ICollisionHandler[] currentHandlers = BulletImpactEffects;
+                BulletImpactEffects = new ICollisionHandler[currentHandlers.Length + 1];
+                Array.Copy(currentHandlers, BulletImpactEffects, currentHandlers.Length);
+                BulletImpactEffects[^1] = new Knockback();
+            }
         }
 
         /// <summary>
@@ -178,29 +190,32 @@ namespace LlamAcademy.Guns
                 ShootSystem.Play();
                 AudioConfig.PlayShootingClip(ShootingAudioSource, AmmoConfig.CurrentClipAmmo == 1);
 
-                Vector3 spreadAmount = ShootConfig.GetSpread(Time.time - InitialClickTime);
-
-                Vector3 shootDirection = Vector3.zero;
-                Model.transform.forward += Model.transform.TransformDirection(spreadAmount);
-                if (ShootConfig.ShootType == ShootType.FromGun)
-                {
-                    shootDirection = ShootSystem.transform.forward;
-                }
-                else
-                {
-                    shootDirection = ActiveCamera.transform.forward +
-                                     ActiveCamera.transform.TransformDirection(spreadAmount);
-                }
-
                 AmmoConfig.CurrentClipAmmo--;
 
-                if (ShootConfig.IsHitscan)
+                for (int i = 0; i < ShootConfig.BulletsPerShot; i++)
                 {
-                    DoHitscanShoot(shootDirection, GetRaycastOrigin(), ShootSystem.transform.position);
-                }
-                else
-                {
-                    DoProjectileShoot(shootDirection);
+                    Vector3 spreadAmount = ShootConfig.GetSpread(Time.time - InitialClickTime);
+
+                    Vector3 shootDirection = Vector3.zero;
+                    Model.transform.forward += Model.transform.TransformDirection(spreadAmount);
+                    if (ShootConfig.ShootType == ShootType.FromGun)
+                    {
+                        shootDirection = ShootSystem.transform.forward;
+                    }
+                    else
+                    {
+                        shootDirection = ActiveCamera.transform.forward +
+                                         ActiveCamera.transform.TransformDirection(spreadAmount);
+                    }
+
+                    if (ShootConfig.IsHitscan)
+                    {
+                        DoHitscanShoot(shootDirection, GetRaycastOrigin(), ShootSystem.transform.position);
+                    }
+                    else
+                    {
+                        DoProjectileShoot(shootDirection);
+                    }
                 }
             }
         }
@@ -473,12 +488,12 @@ namespace LlamAcademy.Guns
         /// Calls <see cref="SurfaceManager.HandleImpact(GameObject, Vector3, Vector3, ImpactType, int)"/> and applies damage
         /// if a damagable object was hit
         /// </summary>
-        /// <param name="DistanceTraveled"></param>
+        /// <param name="DistanceTravelled"></param>
         /// <param name="HitLocation"></param>
         /// <param name="HitNormal"></param>
         /// <param name="HitCollider"></param>
         private void HandleBulletImpact(
-            float DistanceTraveled,
+            float DistanceTravelled,
             Vector3 HitLocation,
             Vector3 HitNormal,
             Collider HitCollider,
@@ -503,12 +518,12 @@ namespace LlamAcademy.Guns
                     }
                 }
 
-                damageable.TakeDamage(DamageConfig.GetDamage(DistanceTraveled, maxPercentDamage));
+                damageable.TakeDamage(DamageConfig.GetDamage(DistanceTravelled, maxPercentDamage));
             }
 
             foreach (ICollisionHandler collisionHandler in BulletImpactEffects)
             {
-                collisionHandler.HandleImpact(HitCollider, HitLocation, HitNormal, this);
+                collisionHandler.HandleImpact(HitCollider, HitLocation, HitNormal, DistanceTravelled, this);
             }
         }
 
@@ -559,7 +574,8 @@ namespace LlamAcademy.Guns
             config.TrailConfig = TrailConfig.Clone() as TrailConfigScriptableObject;
             config.AudioConfig = AudioConfig.Clone() as AudioConfigScriptableObject;
             config.BulletPenConfig = BulletPenConfig.Clone() as BulletPenetrationConfigScriptableObject;
-
+            config.KnockbackConfig = KnockbackConfig.Clone() as KnockbackConfigScriptableObject;
+            
             config.ModelPrefab = ModelPrefab;
             config.SpawnPoint = SpawnPoint;
             config.SpawnRotation = SpawnRotation;

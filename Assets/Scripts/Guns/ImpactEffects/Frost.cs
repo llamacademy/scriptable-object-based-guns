@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace LlamAcademy.Guns.ImpactEffects
@@ -16,9 +14,14 @@ namespace LlamAcademy.Guns.ImpactEffects
             this.SlowDecay = SlowDecay;
         }
 
-        public override void HandleImpact(Collider ImpactedObject, Vector3 HitPosition, Vector3 HitNormal, GunScriptableObject Gun)
+        public override void HandleImpact(
+            Collider ImpactedObject,
+            Vector3 HitPosition,
+            Vector3 HitNormal,
+            float DistanceTravelled,
+            GunScriptableObject Gun)
         {
-            base.HandleImpact(ImpactedObject, HitPosition, HitNormal, Gun);
+            base.HandleImpact(ImpactedObject, HitPosition, HitNormal,DistanceTravelled, Gun);
 
             for (int i = 0; i < Hits; i++)
             {

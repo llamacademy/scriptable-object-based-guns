@@ -9,6 +9,7 @@ using LlamAcademy.Guns.Persistence.Model;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
+using SlotType = LlamAcademy.Guns.Slot;
 
 namespace LlamAcademy.Guns.Demo.UI
 {
@@ -410,13 +411,13 @@ namespace LlamAcademy.Guns.Demo.UI
             AttachmentSlot slot = null;
             switch (FocusSlot)
             {
-                case Guns.Slot.Ammo:
+                case SlotType.Ammo:
                     slot = AmmoSlot;
                     break;
-                case Guns.Slot.Barrel:
+                case SlotType.Barrel:
                     slot = BarrelSlot;
                     break;
-                case Guns.Slot.Handle:
+                case SlotType.Handle:
                     slot = HandleSlot;
                     break;
             }

@@ -25,3 +25,5 @@ MonoBehaviour:
   TrailConfig: {fileID: 11400000, guid: f27ce4189ab286044818d9e95f5d8b2e, type: 2}
   AudioConfig: {fileID: 11400000, guid: 1c232968243d5424cb40919d06efea84, type: 2}
   BulletPenConfig: {fileID: 11400000, guid: a3e70b9b307dd294c89120cc4ce92a4f, type: 2}
+  KnockbackConfig: {fileID: 11400000, guid: a508827e9691acb4d883fdc6c2e9b361, type: 2}
+  KnockbackConfig: {fileID: 11400000, guid: d418b1980e2f90d428a279759c13ffb3, type: 2}
