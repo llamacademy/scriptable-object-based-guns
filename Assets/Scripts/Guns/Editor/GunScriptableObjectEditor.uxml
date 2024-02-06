@@ -17,4 +17,5 @@
     <uie:PropertyField binding-path="TrailConfig" />
     <uie:PropertyField binding-path="AudioConfig" />
     <uie:PropertyField binding-path="BulletPenConfig" />
+    <uie:PropertyField binding-path="KnockbackConfig" />
 </ui:UXML>

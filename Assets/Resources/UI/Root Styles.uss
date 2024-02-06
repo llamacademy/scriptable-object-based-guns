@@ -37,6 +37,10 @@
     background-image: url('project://database/Assets/Textures/M4A1.png?fileID=21300000&guid=5e0245b99de779b4cae9cd15e7590a2a&type=3#M4A1');
 }
 
+.shotgun {
+    background-image: url('project://database/Assets/Textures/Shotgun.png ');
+}
+
 .glock {
     background-image: url('project://database/Assets/Textures/Glock.png?fileID=21300000&guid=ea83b90d9f541b6498c8480cf28490bb&type=3#Glock');
 }

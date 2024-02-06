@@ -11,6 +11,7 @@ namespace LlamAcademy.Guns
         public float BulletSpawnForce = 100;
         public LayerMask HitMask;
         public float FireRate = 0.25f;
+        public int BulletsPerShot = 1;
         public BulletSpreadType SpreadType = BulletSpreadType.Simple;
         public float RecoilRecoverySpeed = 1f;
         public float MaxSpreadTime = 1f;
@@ -25,6 +26,8 @@ namespace LlamAcademy.Guns
         /// </summary>
         [Header("Simple Spread")]
         public Vector3 Spread = new Vector3(0.1f, 0.1f, 0.1f);
+        public Vector3 MinSpread = Vector3.zero;
+
         [Header("Texture-Based Spread")]
         /// <summary>
         /// Multiplier applied to the vector from the center of <see cref="SpreadTexture"/> and the chosen pixel. 
@@ -52,7 +55,11 @@ namespace LlamAcademy.Guns
             if (SpreadType == BulletSpreadType.Simple)
             {
                 spread = Vector3.Lerp(
-                    Vector3.zero,
+                    new Vector3(
+                        Random.Range(-MinSpread.x, MinSpread.x),
+                        Random.Range(-MinSpread.y, MinSpread.y),
+                        Random.Range(-MinSpread.z, MinSpread.z)
+                    ),
                     new Vector3(
                         Random.Range(-Spread.x, Spread.x),
                         Random.Range(-Spread.y, Spread.y),

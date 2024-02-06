@@ -2,7 +2,6 @@ using LlamAcademy.Guns.ImpactEffects;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.XR;
 
 namespace LlamAcademy.Guns.Demo.Editors
 {
@@ -12,7 +11,7 @@ namespace LlamAcademy.Guns.Demo.Editors
         private void OnSceneGUI()
         {
             PlayerAction action = (PlayerAction)target;
-
+            
             if (EditorApplication.isPlaying) // can't show any visualization if we aren't in play mode
             {
                 Camera camera = action.GunSelector.Camera;

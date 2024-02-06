@@ -5,16 +5,20 @@ using UnityEngine.AI;
 namespace LlamAcademy.Guns.Demo.Enemy
 {
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(NavMeshAgent))]
-    public class EnemyMovement : MonoBehaviour, ISlowable
+    [RequireComponent(typeof(NavMeshAgent), typeof(Rigidbody))]
+    public class EnemyMovement : MonoBehaviour, ISlowable, IKnockbackable
     {
         private Animator Animator;
         [SerializeField]
         private float StillDelay = 1f;
+
+        [field: SerializeField] public float StillThreshold { get; set; } = 0.01f;
         private LookAtIK LookAt;
         private NavMeshAgent Agent;
+        private Rigidbody Rigidbody;
 
         private Coroutine SlowCoroutine;
+        private Coroutine MoveCoroutine;
         private float BaseSpeed;
         private const string IsWalking = "IsWalking";
 
@@ -24,6 +28,7 @@ namespace LlamAcademy.Guns.Demo.Enemy
         {
             Animator = GetComponent<Animator>();
             Agent = GetComponent<NavMeshAgent>();
+            Rigidbody = GetComponent<Rigidbody>();
             LookAt = GetComponent<LookAtIK>();
             if (Triangulation.vertices == null || Triangulation.vertices.Length == 0)
             {
@@ -35,7 +40,7 @@ namespace LlamAcademy.Guns.Demo.Enemy
 
         private void Start()
         {
-            StartCoroutine(Roam());
+            MoveCoroutine = StartCoroutine(Roam());
             BaseSpeed = Agent.speed;
         }
 
@@ -95,6 +100,39 @@ namespace LlamAcademy.Guns.Demo.Enemy
             }
 
             Agent.speed = BaseSpeed;
+        }
+
+        public void GetKnockedBack(Vector3 Force, float MaxMoveTime)
+        {
+            StopCoroutine(MoveCoroutine);
+            MoveCoroutine = StartCoroutine(ApplyKnockback(Force, MaxMoveTime));
+        }
+
+        private IEnumerator ApplyKnockback(Vector3 Force, float MaxMoveTime)
+        {
+            yield return null;
+            Agent.enabled = false;
+            Rigidbody.useGravity = true;
+            Rigidbody.isKinematic = false;
+            Rigidbody.AddForce(Force);
+            
+            yield return new WaitForFixedUpdate();
+            float knockbackTime = Time.time;
+            yield return new WaitUntil(
+                () => Rigidbody.velocity.magnitude < StillThreshold || Time.time > knockbackTime + MaxMoveTime 
+            );
+            yield return new WaitForSeconds(0.25f);
+
+            Rigidbody.velocity = Vector3.zero;
+            Rigidbody.angularVelocity = Vector3.zero;
+            Rigidbody.useGravity = false;
+            Rigidbody.isKinematic = true;
+            Agent.Warp(transform.position);
+            Agent.enabled = true;
+
+            yield return null;
+
+            MoveCoroutine = StartCoroutine(Roam());
         }
     }
 }

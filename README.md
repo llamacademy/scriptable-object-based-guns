@@ -17,6 +17,8 @@ In this tutorial repository and accompanying [video series](https://www.youtube.
 * Gun & Ammo Pick-ups - [Implemented in Part 11](https://www.youtube.com/watch?v=Fpt9xA3Ftmo&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=11)
 * Bullet Penetration - [Implemented in Part 13](https://www.youtube.com/watch?v=3awUff2-7Y8&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=13&pp=gAQBiAQBsAQB)
 * Persisting Player Loadout - [Implemented in Part 14](https://www.youtube.com/watch?v=fwBBwoClR9A&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=14)
+* Multi-bullet shots - [Implemented in Part 15 as Shotgun](https://www.youtube.com/watch?v=7NvK-Br7QkE&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=15) 
+* Knockback - [Implemented in Part 15](https://www.youtube.com/watch?v=7NvK-Br7QkE&list=PLllNmP7eq6TQJjgKJ6FKcNFfRREe_L6to&index=15)
 
 Impact Effects _are not_ in scope of this tutorial series. They are handled using the [Surface Manager](https://github.com/llamacademy/surface-manager) (tutorial [video here](https://youtu.be/kT2ZxjMuT_4)).
 
@@ -62,20 +64,18 @@ If you'd prefer to become a [YouTube Member](https://www.youtube.com/channel/UCn
 Want to provide one-time support? You can send a Super Thanks on any video!
 
 ### Phenomenal Supporter Tier
-* Andrew Bowen
 * YOUR NAME HERE!
 
 ### Tremendous Supporter Tier
-* Bruno Bozic
 * YOUR NAME HERE!
 
 ### Awesome Supporter Tier
-* AudemKay
 * Ivan
 * Reulan
 * Iffy Obelus
-* SolarInt
 * Perry
+* Mustafa
+* Jerematic
 * YOUR NAME HERE!
 
 ### Supporters
@@ -85,19 +85,19 @@ Want to provide one-time support? You can send a Super Thanks on any video!
 * Tarik
 * Sean
 * Elijah Singer
-* Lurking Ninja
-* Josh Meyer
+* Bruno Bozic
 * Ewald Schulte
 * Andrew Allbright
-* AudemKay
+* AudemKay x2
 * Claduiu Barsan-Pipu
 * Ben
-* Xuul
 * Christiaan Van Steenwijk
 * Joseph Janosko
-* Joao Henrique Machado Silva
 * ChimeraDev
 * Wendy Whitner
+* Lukas Wolfe
+* Steve Martin
+* Jason Hansen
 * YOUR NAME HERE!
 
 ## Other Projects
@@ -105,14 +105,6 @@ Interested in AI Topics in Unity, or other tutorials on Unity in general?
 
 * [Check out the LlamAcademy YouTube Channel](https://youtube.com/c/LlamAcademy)!
 * [Check out the LlamAcademy GitHub for more projects](https://github.com/llamacademy)
-
-## Socials
-* [YouTube](https://youtube.com/c/LlamAcademy)
-* [Facebook](https://facebook.com/LlamAcademyOfficial)
-* [TikTok](https://www.tiktok.com/@llamacademy)
-* [Twitter](https://twitter.com/TheLlamAcademy)
-* [Instagram](https://www.instagram.com/llamacademy/)
-* [Reddit](https://www.reddit.com/user/LlamAcademyOfficial)
 
 ## Requirements
 * Requires Unity 2021.3 LTS or higher.

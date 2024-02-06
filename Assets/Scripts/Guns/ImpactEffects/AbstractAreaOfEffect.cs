@@ -22,7 +22,12 @@ namespace LlamAcademy.Guns
             HitObjects = new Collider[MaxEnemiesAffected];
         }
 
-        public virtual void HandleImpact(Collider ImpactedObject, Vector3 HitPosition, Vector3 HitNormal, GunScriptableObject Gun)
+        public virtual void HandleImpact(
+            Collider ImpactedObject,
+            Vector3 HitPosition,
+            Vector3 HitNormal,
+            float DistanceTravelled,
+            GunScriptableObject Gun)
         {
             Hits = Physics.OverlapSphereNonAlloc(
                 HitPosition,
