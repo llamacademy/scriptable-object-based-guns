@@ -214,12 +214,13 @@ namespace StarterAssets
             {
                 _cinemachineTargetYaw = minY;
             }
-            else if (_cinemachineTargetPitch > maxY)
+            else if (_cinemachineTargetYaw > maxY)
             {
-                _cinemachineTargetPitch = maxY;
+                _cinemachineTargetYaw = maxY;
             }
             // clamp our rotations so our values are limited 360 degrees
-            //_cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
+	    // Alternatively, this will work
+            //_cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, -HorizontalClamp, HorizontalClamp);
             _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
 
             // Cinemachine will follow this target
